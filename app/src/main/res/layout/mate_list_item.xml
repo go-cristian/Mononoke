@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    android:rowCount="7"
+    style="@style/AppTheme.MateList.Item"
+    >
+
+  <ImageView
+      android:id="@+id/mate_list_item_avatar"
+      android:layout_rowSpan="3"
+      style="@style/AppTheme.MateList.Avatar"
+      />
+
+  <TextView
+      android:id="@+id/mate_list_item_name"
+      style="@style/AppTheme.MateList.Name"
+      />
+
+  <TextView
+      android:id="@+id/mate_list_item_role"
+      style="@style/AppTheme.MateList.Role"
+      />
+
+  <TextView
+      android:id="@+id/mate_list_item_github"
+      style="@style/AppTheme.MateList.Github"
+      />
+
+  <TextView
+      android:text="@string/mate_list_label_languages"
+      style="@style/AppTheme.MateList.Label"
+      />
+
+  <TextView
+      android:id="@+id/mate_list_item_languages"
+      style="@style/AppTheme.MateList.Languages"
+      />
+
+  <TextView
+      android:text="@string/mate_list_label_tags"
+      style="@style/AppTheme.MateList.Label"
+      />
+
+  <TextView
+      android:id="@+id/mate_list_item_tags"
+      style="@style/AppTheme.MateList.Tags"
+      />
+
+  <TextView
+      android:text="@string/mate_list_label_location"
+      style="@style/AppTheme.MateList.Label"
+      />
+
+  <ImageView
+      android:id="@+id/mate_list_item_location"
+      android:layout_width="16dp"
+      android:layout_height="12dp"
+      android:layout_gravity="start|center_vertical"
+      style="@style/AppTheme.MateList.Location"
+      />
+
+  <TextView
+      android:text="@string/mate_list_label_status"
+      style="@style/AppTheme.MateList.Label"
+      />
+
+  <TextView
+      android:id="@+id/mate_list_item_status"
+      android:text="@string/mate_list_item_status"
+      style="@style/AppTheme.MateList.Status"
+      />
+
+
+</GridLayout>
+

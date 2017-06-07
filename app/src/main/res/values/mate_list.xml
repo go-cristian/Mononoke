@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="mate_list_error">It was an error getting the information</string>
+  <string name="mate_list_label_languages">Languages</string>
+  <string name="mate_list_label_tags">Skills</string>
+  <string name="mate_list_label_location">Location</string>
+  <string name="mate_list_label_status">Status</string>
+  <string name="mate_list_item_status">Not available</string>
+
+  <dimen name="mate_list_wrapper_radius">10dp</dimen>
+
+  <integer name="mate_list_columns">1</integer>
+
+  <color name="mate_list_wrapper_color">#C2C2C2</color>
+  <color name="mate_list_item_background">#fff</color>
+
+  <style name="AppTheme.MateList"/>
+
+  <style name="AppTheme.MateList.Wrapper">
+    <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">16dp
+    </item>
+    <item name="android:paddingLeft">16dp</item>
+    <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">16dp</item>
+    <item name="android:paddingRight">16dp</item>
+    <item name="android:background">@color/mate_list_wrapper_color</item>
+  </style>
+
+  <style name="AppTheme.MateList.Item">
+    <item name="android:padding">16dp</item>
+    <item name="android:layout_marginTop">8dp</item>
+    <item name="android:layout_marginBottom">8dp</item>
+    <item name="android:background">@drawable/mate_list_wrapper_background
+    </item>
+  </style>
+
+  <style name="AppTheme.MateList.Avatar">
+    <item name="android:minHeight">100dp</item>
+    <item name="android:maxHeight">100dp</item>
+    <item name="android:minWidth">100dp</item>
+    <item name="android:maxWidth">100dp</item>
+  </style>
+
+  <style name="AppTheme.MateList.Label" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.MateList.Name" parent="AppTheme.Common.Title"/>
+
+  <style name="AppTheme.MateList.Role" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.MateList.Github" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.MateList.Location" parent="AppTheme.Common.Icon">
+    <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+      8dp
+    </item>
+    <item name="android:layout_marginLeft">8dp</item>
+  </style>
+
+  <style name="AppTheme.MateList.Languages" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateList.Tags" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateList.Gender" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateList.Status" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateList.Update" parent="AppTheme.Common.Button"/>
+</resources>

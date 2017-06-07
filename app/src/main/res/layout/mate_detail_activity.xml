@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    android:rowCount="7"
+    tools:context=".ui.mate.detail.MateDetailActivity"
+    style="@style/AppTheme.MateDetail.Item"
+    >
+
+  <ImageView
+      android:id="@+id/mate_detail_avatar"
+      android:layout_rowSpan="3"
+      style="@style/AppTheme.MateDetail.Avatar"
+      />
+
+  <TextView
+      android:id="@+id/mate_detail_name"
+      style="@style/AppTheme.MateDetail.Name"
+      />
+
+  <TextView
+      android:id="@+id/mate_detail_role"
+      style="@style/AppTheme.MateDetail.Role"
+      />
+
+  <TextView
+      android:id="@+id/mate_detail_github"
+      style="@style/AppTheme.MateDetail.Github"
+      />
+
+  <TextView
+      android:text="@string/mate_detail_label_languages"
+      style="@style/AppTheme.MateDetail.Label"
+      />
+
+  <TextView
+      android:id="@+id/mate_detail_languages"
+      style="@style/AppTheme.MateDetail.Languages"
+      />
+
+  <TextView
+      android:text="@string/mate_detail_label_tags"
+      style="@style/AppTheme.MateDetail.Label"
+      />
+
+  <TextView
+      android:id="@+id/mate_detail_tags"
+      style="@style/AppTheme.MateDetail.Tags"
+      />
+
+  <TextView
+      android:text="@string/mate_detail_label_location"
+      style="@style/AppTheme.MateDetail.Label"
+      />
+
+  <ImageView
+      android:id="@+id/mate_detail_location"
+      android:layout_width="16dp"
+      android:layout_height="12dp"
+      android:layout_gravity="start|center_vertical"
+      style="@style/AppTheme.MateDetail.Location"
+      />
+
+  <EditText
+      android:id="@+id/mate_detail_status"
+      android:layout_columnSpan="2"
+      android:layout_gravity="fill_horizontal"
+      android:hint="@string/mate_detail_status"
+      style="@style/AppTheme.MateDetail.Status"
+      />
+
+  <Button
+      android:id="@+id/mate_detail_update"
+      android:layout_columnSpan="2"
+      android:layout_gravity="fill_horizontal"
+      android:text="@string/mate_detail_update"
+      style="@style/AppTheme.MateDetail.Update"
+      />
+
+</GridLayout>

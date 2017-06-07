@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <string name="loading_text">Please wait</string>
+
+  <style name="AppTheme.Common"/>
+
+  <style name="AppTheme.Common.Font">
+    <item name="fontPath">green_avocado.ttf</item>
+    <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+      8dp
+    </item>
+    <item name="android:layout_marginLeft">8dp</item>
+    <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">
+      8dp
+    </item>
+    <item name="android:layout_marginRight">8dp</item>
+    <item name="android:layout_marginTop">4dp</item>
+    <item name="android:layout_marginBottom">4dp</item>
+  </style>
+
+  <style name="AppTheme.Common.Icon">
+    <item name="android:maxWidth">10dp</item>
+    <item name="android:minWidth">10dp</item>
+    <item name="android:maxHeight">10dp</item>
+    <item name="android:minHeight">10dp</item>
+    <item name="android:scaleType">fitXY</item>
+  </style>
+
+  <style name="AppTheme.Common.Title" parent="AppTheme.Common.Font">
+    <item name="android:textSize">18sp</item>
+    <item name="android:textColor">#484848</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="AppTheme.Common.Subtitle" parent="AppTheme.Common.Font">
+    <item name="android:textSize">14sp</item>
+    <item name="android:textColor">#C4C4C4</item>
+  </style>
+
+
+  <style name="AppTheme.Common.Text" parent="AppTheme.Common.Font">
+    <item name="android:textSize">14sp</item>
+    <item name="android:textColor">#6D6D6D</item>
+  </style>
+
+  <style name="AppTheme.Common.Field" parent="AppTheme.Common.Font">
+    <item name="android:textSize">14sp</item>
+    <item name="android:textColor">#6D6D6D</item>
+  </style>
+
+  <style name="AppTheme.Common.Button" parent="AppTheme.Common.Font">
+    <item name="android:textColor">#fff</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:background">#6D6D6D</item>
+  </style>
+
+</resources>

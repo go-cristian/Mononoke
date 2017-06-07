@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="mate_detail_label_languages">Languages</string>
+  <string name="mate_detail_label_tags">Skills</string>
+  <string name="mate_detail_label_location">Location</string>
+  <string name="mate_detail_label_status">Status</string>
+  <string name="mate_detail_status">Update your status</string>
+  <string name="mate_detail_update">Update</string>
+
+  <dimen name="mate_detail_wrapper_radius">10dp</dimen>
+
+  <integer name="mate_detail_columns">1</integer>
+
+  <color name="mate_detail_wrapper_color">#C2C2C2</color>
+  <color name="mate_detail_item_background">#fff</color>
+
+  <style name="AppTheme.MateDetail"/>
+
+  <style name="AppTheme.MateDetail.Wrapper">
+    <item name="android:padding">16dp</item>
+    <item name="android:background">@color/mate_detail_wrapper_color</item>
+  </style>
+
+  <style name="AppTheme.MateDetail.Item">
+    <item name="android:padding">16dp</item>
+    <item name="android:layout_marginBottom">16dp</item>
+    <item name="android:background">@drawable/mate_list_wrapper_background</item>
+  </style>
+
+  <style name="AppTheme.MateDetail.Avatar">
+    <item name="android:minHeight">100dp</item>
+    <item name="android:maxHeight">100dp</item>
+    <item name="android:minWidth">100dp</item>
+    <item name="android:maxWidth">100dp</item>
+  </style>
+
+  <style name="AppTheme.MateDetail.Label" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.MateDetail.Name" parent="AppTheme.Common.Title"/>
+
+  <style name="AppTheme.MateDetail.Role" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.MateDetail.Github" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.MateDetail.Location" parent="AppTheme.Common.Icon">
+    <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+      8dp
+    </item>
+    <item name="android:layout_marginLeft">8dp</item>
+  </style>
+
+  <style name="AppTheme.MateDetail.Languages" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateDetail.Tags" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateDetail.Gender" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.MateDetail.Status" parent="AppTheme.Common.Field"/>
+
+  <style name="AppTheme.MateDetail.Update" parent="AppTheme.Common.Button"/>
+</resources>
