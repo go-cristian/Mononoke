@@ -16,6 +16,7 @@ import co.iyubinest.mononoke.common.LoadImage;
 import co.iyubinest.mononoke.data.team.Mate;
 import co.iyubinest.mononoke.data.team.mates.SocketTeamMateUpdate;
 import co.iyubinest.mononoke.ui.team.list.TeamListActivity;
+import co.iyubinest.mononoke.ui.team.list.TeamListPresenter;
 
 import static co.iyubinest.mononoke.common.LoadImage.OPTION.FIT;
 
@@ -23,20 +24,20 @@ public class TeamMateDetailActivity extends BaseActivity
     implements TeamMateDetailScreen {
 
   public static final String MATE_EXTRA = "MATE_EXTRA";
-  @BindView(R.id.mate_detail_toolbar) Toolbar toolbarView;
-  @BindView(R.id.mate_detail_avatar) ImageView avatarView;
-  @BindView(R.id.mate_detail_github) TextView githubView;
-  @BindView(R.id.mate_detail_location) ImageView locationView;
-  @BindView(R.id.mate_detail_role) TextView roleView;
-  @BindView(R.id.mate_detail_languages) TextView languagesView;
-  @BindView(R.id.mate_detail_tags) TextView tagsView;
-  @BindView(R.id.mate_detail_status) EditText statusField;
+  @BindView(R.id.team_mate_detail_toolbar) Toolbar toolbarView;
+  @BindView(R.id.team_mate_detail_avatar) ImageView avatarView;
+  @BindView(R.id.team_mate_detail_github) TextView githubView;
+  @BindView(R.id.team_mate_detail_location) ImageView locationView;
+  @BindView(R.id.team_mate_detail_role) TextView roleView;
+  @BindView(R.id.team_mate_detail_languages) TextView languagesView;
+  @BindView(R.id.team_mate_detail_tags) TextView tagsView;
+  @BindView(R.id.team_mate_detail_status) EditText statusField;
 
   TeamMateDetailPresenter presenter;
 
-  public static Intent create(Context context, Mate mate) {
+  public static Intent create(Context context, TeamListPresenter.User user) {
     Intent intent = new Intent(context, TeamMateDetailActivity.class);
-    intent.putExtra(MATE_EXTRA, mate);
+    intent.putExtra(MATE_EXTRA, user);
     return intent;
   }
 
