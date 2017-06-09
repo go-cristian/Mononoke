@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="team_mate_detail_label_languages">Languages</string>
+  <string name="team_mate_detail_label_tags">Skills</string>
+  <string name="team_mate_detail_label_location">Location</string>
+  <string name="team_mate_detail_label_status">Status</string>
+  <string name="team_mate_detail_status">Update your status</string>
+  <string name="team_mate_detail_update">Update</string>
+
+  <dimen name="team_mate_detail_wrapper_radius">10dp</dimen>
+
+  <integer name="team_mate_detail_columns">1</integer>
+
+  <color name="team_mate_detail_wrapper_color">#C2C2C2</color>
+  <color name="team_mate_detail_item_background">#fff</color>
+
+  <style name="AppTheme.TeamMateDetail"/>
+
+  <style name="AppTheme.TeamMateDetail.Wrapper">
+    <item name="android:padding">16dp</item>
+    <item name="android:layout_marginTop">?attr/actionBarSize</item>
+    <item name="android:background">@color/team_mate_detail_item_background
+    </item>
+  </style>
+
+  <style name="AppTheme.TeamMateDetail.Toolbar" parent="AppTheme.Common.Toolbar">
+    <item name="android:background">@color/team_mate_detail_wrapper_color</item>
+    <item name="android:textColor">#fff</item>
+  </style>
+
+  <style name="AppTheme.TeamMateDetail.Avatar">
+    <item name="android:minHeight">100dp</item>
+    <item name="android:maxHeight">100dp</item>
+    <item name="android:minWidth">100dp</item>
+    <item name="android:maxWidth">100dp</item>
+  </style>
+
+  <style name="AppTheme.TeamMateDetail.Label" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.TeamMateDetail.Role" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.TeamMateDetail.Github" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.TeamMateDetail.Location" parent="AppTheme.Common.Icon">
+    <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+      8dp
+    </item>
+    <item name="android:layout_marginLeft">8dp</item>
+  </style>
+
+  <style name="AppTheme.TeamMateDetail.Languages" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamMateDetail.Tags" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamMateDetail.Gender" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamMateDetail.Status" parent="AppTheme.Common.Field"/>
+
+  <style name="AppTheme.TeamMateDetail.Update" parent="AppTheme.Common.Button"/>
+</resources>

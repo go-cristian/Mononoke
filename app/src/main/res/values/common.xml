@@ -39,6 +39,10 @@
   </style>
 
 
+  <style name="AppTheme.Common.Toolbar">
+    <item name="android:minHeight">?attr/actionBarSize</item>
+  </style>
+
   <style name="AppTheme.Common.Text" parent="AppTheme.Common.Font">
     <item name="android:textSize">14sp</item>
     <item name="android:textColor">#6D6D6D</item>

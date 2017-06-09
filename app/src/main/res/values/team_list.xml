@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="team_list_error">It was an error getting the information</string>
+  <string name="team_list_label_languages">Languages</string>
+  <string name="team_list_label_tags">Skills</string>
+  <string name="team_list_label_location">Location</string>
+  <string name="team_list_label_status">Status</string>
+  <string name="team_list_item_status">Not available</string>
+
+  <dimen name="team_list_wrapper_radius">10dp</dimen>
+
+  <integer name="team_list_columns">1</integer>
+
+  <color name="team_list_wrapper_color">#C2C2C2</color>
+  <color name="team_list_item_background">#fff</color>
+
+  <style name="AppTheme.TeamList"/>
+
+  <style name="AppTheme.TeamList.Wrapper">
+    <item name="android:background">@color/team_list_wrapper_color</item>
+  </style>
+
+  <style name="AppTheme.TeamList.Item">
+    <item name="android:padding">16dp</item>
+    <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">8dp
+    </item>
+    <item name="android:layout_marginLeft">8dp</item>
+    <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">8dp
+    </item>
+    <item name="android:layout_marginRight">8dp</item>
+    <item name="android:layout_marginTop">8dp</item>
+    <item name="android:layout_marginBottom">8dp</item>
+    <item name="android:background">@drawable/team_list_wrapper_background
+    </item>
+  </style>
+
+  <style name="AppTheme.TeamList.Avatar">
+    <item name="android:minHeight">100dp</item>
+    <item name="android:maxHeight">100dp</item>
+    <item name="android:minWidth">100dp</item>
+    <item name="android:maxWidth">100dp</item>
+  </style>
+
+  <style name="AppTheme.TeamList.Label" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.TeamList.Name" parent="AppTheme.Common.Title"/>
+
+  <style name="AppTheme.TeamList.Role" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.TeamList.Github" parent="AppTheme.Common.Subtitle"/>
+
+  <style name="AppTheme.TeamList.Location" parent="AppTheme.Common.Icon">
+    <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">
+      8dp
+    </item>
+    <item name="android:layout_marginLeft">8dp</item>
+  </style>
+
+  <style name="AppTheme.TeamList.Languages" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamList.Tags" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamList.Gender" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamList.Status" parent="AppTheme.Common.Text"/>
+
+  <style name="AppTheme.TeamList.Update" parent="AppTheme.Common.Button"/>
+</resources>

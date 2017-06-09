@@ -1,4 +1,4 @@
-package co.iyubinest.mononoke.data.mates;
+package co.iyubinest.mononoke.data.team;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,6 +6,17 @@ import java.util.List;
 
 public class Mate implements Parcelable {
 
+  public static final Creator<Mate> CREATOR = new Creator<Mate>() {
+    @Override
+    public Mate createFromParcel(Parcel source) {
+      return new Mate(source);
+    }
+
+    @Override
+    public Mate[] newArray(int size) {
+      return new Mate[size];
+    }
+  };
   private final String name, avatar, github, location, role, status;
   private final Gender gender;
   private final List<String> languages, tags;
@@ -22,6 +33,19 @@ public class Mate implements Parcelable {
     this.status = status;
     this.languages = languages;
     this.tags = tags;
+  }
+
+  protected Mate(Parcel in) {
+    this.name = in.readString();
+    this.avatar = in.readString();
+    this.github = in.readString();
+    this.location = in.readString();
+    this.role = in.readString();
+    this.status = in.readString();
+    int tmpGender = in.readInt();
+    this.gender = tmpGender == -1 ? null : Gender.values()[tmpGender];
+    this.languages = in.createStringArrayList();
+    this.tags = in.createStringArrayList();
   }
 
   public String name() {
@@ -60,17 +84,6 @@ public class Mate implements Parcelable {
     return tags;
   }
 
-  public enum Gender {
-    MALE, FEMALE, OTHER, NA;
-
-    public static Gender from(String gender) {
-      if (gender.equals("Male")) return MALE;
-      if (gender.equals("Female")) return FEMALE;
-      if (gender.equals("Other")) return OTHER;
-      return NA;
-    }
-  }
-
   @Override
   public int describeContents() {
     return 0;
@@ -89,28 +102,14 @@ public class Mate implements Parcelable {
     dest.writeStringList(this.tags);
   }
 
-  protected Mate(Parcel in) {
-    this.name = in.readString();
-    this.avatar = in.readString();
-    this.github = in.readString();
-    this.location = in.readString();
-    this.role = in.readString();
-    this.status = in.readString();
-    int tmpGender = in.readInt();
-    this.gender = tmpGender == -1 ? null : Gender.values()[tmpGender];
-    this.languages = in.createStringArrayList();
-    this.tags = in.createStringArrayList();
+  public enum Gender {
+    MALE, FEMALE, OTHER, NA;
+
+    public static Gender from(String gender) {
+      if (gender.equals("Male")) return MALE;
+      if (gender.equals("Female")) return FEMALE;
+      if (gender.equals("Other")) return OTHER;
+      return NA;
+    }
   }
-
-  public static final Creator<Mate> CREATOR = new Creator<Mate>() {
-    @Override
-    public Mate createFromParcel(Parcel source) {
-      return new Mate(source);
-    }
-
-    @Override
-    public Mate[] newArray(int size) {
-      return new Mate[size];
-    }
-  };
 }

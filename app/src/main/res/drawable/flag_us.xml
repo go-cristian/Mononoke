@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="64dp"
     android:height="48dp"
+    android:viewportHeight="13"
     android:viewportWidth="13"
-    android:viewportHeight="13">
+    android:width="64dp">
   <path
       android:fillColor="#bd3d44"
       android:pathData="M0 0h13v1h-13Z"/>
@@ -48,55 +48,55 @@
       android:pathData="M0 0h5.2v7h-5.2Z"/>
 
   <group
+      android:scaleX="0.009"
+      android:scaleY="0.012"
       android:translateX="0.2"
-      android:translateY="0.2"
-      android:scaleX="0.009"
-      android:scaleY="0.012">
+      android:translateY="0.2">
     <path
         android:fillColor="#fff"
         android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
   </group>
   <group
+      android:scaleX="0.009"
+      android:scaleY="0.012"
       android:translateX="1.0"
-      android:translateY="0.2"
-      android:scaleX="0.009"
-      android:scaleY="0.012">
+      android:translateY="0.2">
     <path
         android:fillColor="#fff"
         android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
   </group>
   <group
+      android:scaleX="0.009"
+      android:scaleY="0.012"
       android:translateX="1.8"
-      android:translateY="0.2"
-      android:scaleX="0.009"
-      android:scaleY="0.012">
+      android:translateY="0.2">
     <path
         android:fillColor="#fff"
         android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
   </group>
   <group
+      android:scaleX="0.009"
+      android:scaleY="0.012"
       android:translateX="2.6"
-      android:translateY="0.2"
-      android:scaleX="0.009"
-      android:scaleY="0.012">
+      android:translateY="0.2">
     <path
         android:fillColor="#fff"
         android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
   </group>
   <group
+      android:scaleX="0.009"
+      android:scaleY="0.012"
       android:translateX="3.4"
-      android:translateY="0.2"
-      android:scaleX="0.009"
-      android:scaleY="0.012">
+      android:translateY="0.2">
     <path
         android:fillColor="#fff"
         android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
   </group>
   <group
-      android:translateX="4.2"
-      android:translateY="0.2"
       android:scaleX="0.009"
-      android:scaleY="0.012">
+      android:scaleY="0.012"
+      android:translateX="4.2"
+      android:translateY="0.2">
     <path
         android:fillColor="#fff"
         android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -105,55 +105,55 @@
 
   <group android:translateY="1.4">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="3.4"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="4.2"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="4.2"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -163,55 +163,55 @@
 
   <group android:translateY="2.9">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="3.4"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="4.2"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="4.2"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -221,55 +221,55 @@
 
   <group android:translateY="4.3">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="3.4"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="4.2"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="4.2"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -279,55 +279,55 @@
 
   <group android:translateY="5.6">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="3.4"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="4.2"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="4.2"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -337,49 +337,49 @@
   <!-- Odd stars -->
 
   <group
-      android:translateY="0.7"
-      android:translateX="0.4">
+      android:translateX="0.4"
+      android:translateY="0.7">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="3.4"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="3.4"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -387,49 +387,49 @@
   </group>
 
   <group
-      android:translateY="2.1"
-      android:translateX="0.4">
+      android:translateX="0.4"
+      android:translateY="2.1">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="3.4"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="3.4"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -437,49 +437,49 @@
   </group>
 
   <group
-      android:translateY="3.6"
-      android:translateX="0.4">
+      android:translateX="0.4"
+      android:translateY="3.6">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="3.4"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="3.4"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
@@ -487,49 +487,49 @@
   </group>
 
   <group
-      android:translateY="5.0"
-      android:translateX="0.4">
+      android:translateX="0.4"
+      android:translateY="5.0">
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="0.2"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.0"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="1.8"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
+        android:scaleX="0.009"
+        android:scaleY="0.012"
         android:translateX="2.6"
-        android:translateY="0.2"
-        android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>
     </group>
     <group
-        android:translateX="3.4"
-        android:translateY="0.2"
         android:scaleX="0.009"
-        android:scaleY="0.012">
+        android:scaleY="0.012"
+        android:translateX="3.4"
+        android:translateY="0.2">
       <path
           android:fillColor="#fff"
           android:pathData="M 48,54 L 31,42 15,54 21,35 6,23 25,23 32,4 40,23 58,23 42,35 z"/>

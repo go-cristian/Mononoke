@@ -1,15 +1,15 @@
-package co.iyubinest.mononoke.data.mates.list;
+package co.iyubinest.mononoke.data.team.list;
 
-import co.iyubinest.mononoke.data.mates.Mate;
+import co.iyubinest.mononoke.data.team.Mate;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
-public class AndroidRequestMates implements RequestMates {
-  private final RetrofitRequestMates interactor;
+public class AndroidRequestTeam implements RequestTeam {
+  private final RetrofitRequestTeam interactor;
 
-  public AndroidRequestMates(RetrofitRequestMates interactor) {
+  public AndroidRequestTeam(RetrofitRequestTeam interactor) {
     this.interactor = interactor;
   }
 
@@ -20,7 +20,7 @@ public class AndroidRequestMates implements RequestMates {
   }
 
   @Override
-  public Flowable<RetrofitRequestMates.UpdateEvent> subscribeUpdates() {
+  public Flowable<RetrofitRequestTeam.UpdateEvent> subscribeUpdates() {
     return interactor.subscribeUpdates().subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }

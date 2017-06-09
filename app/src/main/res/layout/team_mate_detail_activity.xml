@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/mate_detail_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      style="@style/AppTheme.TeamMateDetail.Toolbar"
+      />
+
+  <GridLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:columnCount="2"
+      android:orientation="horizontal"
+      android:rowCount="7"
+      tools:context=".ui.team.mate_detail.TeamMateDetailActivity"
+      style="@style/AppTheme.TeamMateDetail.Wrapper"
+      >
+
+    <ImageView
+        android:id="@+id/mate_detail_avatar"
+        android:layout_rowSpan="3"
+        style="@style/AppTheme.TeamMateDetail.Avatar"
+        />
+
+    <TextView
+        android:id="@+id/mate_detail_role"
+        android:layout_rowSpan="2"
+        style="@style/AppTheme.TeamMateDetail.Role"
+        />
+
+    <TextView
+        android:id="@+id/mate_detail_github"
+        style="@style/AppTheme.TeamMateDetail.Github"
+        />
+
+    <TextView
+        android:text="@string/team_mate_detail_label_languages"
+        style="@style/AppTheme.TeamMateDetail.Label"
+        />
+
+    <TextView
+        android:id="@+id/mate_detail_languages"
+        style="@style/AppTheme.TeamMateDetail.Languages"
+        />
+
+    <TextView
+        android:text="@string/team_mate_detail_label_tags"
+        style="@style/AppTheme.TeamMateDetail.Label"
+        />
+
+    <TextView
+        android:id="@+id/mate_detail_tags"
+        style="@style/AppTheme.TeamMateDetail.Tags"
+        />
+
+    <TextView
+        android:text="@string/team_mate_detail_label_location"
+        style="@style/AppTheme.TeamMateDetail.Label"
+        />
+
+    <ImageView
+        android:id="@+id/mate_detail_location"
+        android:layout_width="16dp"
+        android:layout_height="12dp"
+        android:layout_gravity="start|center_vertical"
+        style="@style/AppTheme.TeamMateDetail.Location"
+        />
+
+    <EditText
+        android:id="@+id/mate_detail_status"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:hint="@string/team_mate_detail_status"
+        style="@style/AppTheme.TeamMateDetail.Status"
+        />
+
+    <Button
+        android:id="@+id/mate_detail_update"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/team_mate_detail_update"
+        style="@style/AppTheme.TeamMateDetail.Update"
+        />
+
+  </GridLayout>
+
+</FrameLayout>
+

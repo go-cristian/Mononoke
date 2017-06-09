@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mate.list.MateListActivity"
-    style="@style/AppTheme.MateList.Wrapper"
+    tools:context=".ui.team.list.TeamListActivity"
+    style="@style/AppTheme.TeamList.Wrapper"
     >
 
   <include layout="@layout/loading"/>
 
-  <co.iyubinest.mononoke.ui.mate.list.MatesWidget
+  <co.iyubinest.mononoke.ui.team.list.TeamListWidget
       android:id="@+id/mate_list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"

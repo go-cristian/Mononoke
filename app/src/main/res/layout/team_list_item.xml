@@ -6,53 +6,53 @@
     android:columnCount="2"
     android:orientation="horizontal"
     android:rowCount="7"
-    style="@style/AppTheme.MateList.Item"
+    style="@style/AppTheme.TeamList.Item"
     >
 
   <ImageView
       android:id="@+id/mate_list_item_avatar"
       android:layout_rowSpan="3"
-      style="@style/AppTheme.MateList.Avatar"
+      style="@style/AppTheme.TeamList.Avatar"
       />
 
   <TextView
       android:id="@+id/mate_list_item_name"
-      style="@style/AppTheme.MateList.Name"
+      style="@style/AppTheme.TeamList.Name"
       />
 
   <TextView
       android:id="@+id/mate_list_item_role"
-      style="@style/AppTheme.MateList.Role"
+      style="@style/AppTheme.TeamList.Role"
       />
 
   <TextView
       android:id="@+id/mate_list_item_github"
-      style="@style/AppTheme.MateList.Github"
+      style="@style/AppTheme.TeamList.Github"
       />
 
   <TextView
-      android:text="@string/mate_list_label_languages"
-      style="@style/AppTheme.MateList.Label"
+      android:text="@string/team_list_label_languages"
+      style="@style/AppTheme.TeamList.Label"
       />
 
   <TextView
       android:id="@+id/mate_list_item_languages"
-      style="@style/AppTheme.MateList.Languages"
+      style="@style/AppTheme.TeamList.Languages"
       />
 
   <TextView
-      android:text="@string/mate_list_label_tags"
-      style="@style/AppTheme.MateList.Label"
+      android:text="@string/team_list_label_tags"
+      style="@style/AppTheme.TeamList.Label"
       />
 
   <TextView
       android:id="@+id/mate_list_item_tags"
-      style="@style/AppTheme.MateList.Tags"
+      style="@style/AppTheme.TeamList.Tags"
       />
 
   <TextView
-      android:text="@string/mate_list_label_location"
-      style="@style/AppTheme.MateList.Label"
+      android:text="@string/team_list_label_location"
+      style="@style/AppTheme.TeamList.Label"
       />
 
   <ImageView
@@ -60,18 +60,18 @@
       android:layout_width="16dp"
       android:layout_height="12dp"
       android:layout_gravity="start|center_vertical"
-      style="@style/AppTheme.MateList.Location"
+      style="@style/AppTheme.TeamList.Location"
       />
 
   <TextView
-      android:text="@string/mate_list_label_status"
-      style="@style/AppTheme.MateList.Label"
+      android:text="@string/team_list_label_status"
+      style="@style/AppTheme.TeamList.Label"
       />
 
   <TextView
       android:id="@+id/mate_list_item_status"
-      android:text="@string/mate_list_item_status"
-      style="@style/AppTheme.MateList.Status"
+      android:text="@string/team_list_item_status"
+      style="@style/AppTheme.TeamList.Status"
       />
 
 

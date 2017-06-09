@@ -1,13 +1,13 @@
-package co.iyubinest.mononoke.data.mates.list;
+package co.iyubinest.mononoke.data.team.list;
 
-import co.iyubinest.mononoke.data.mates.Mate;
+import co.iyubinest.mononoke.data.team.Mate;
 import io.reactivex.Flowable;
 import java.util.List;
 
-public interface RequestMates {
+public interface RequestTeam {
   Flowable<List<Mate>> connect();
 
-  Flowable<RetrofitRequestMates.UpdateEvent> subscribeUpdates();
+  Flowable<RetrofitRequestTeam.UpdateEvent> subscribeUpdates();
 
   class UpdateEvent {
   }

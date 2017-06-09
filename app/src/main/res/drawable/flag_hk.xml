@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="64dp"
     android:height="48dp"
+    android:viewportHeight="600"
     android:viewportWidth="900"
-    android:viewportHeight="600">
+    android:width="64dp">
 
   <path
       android:fillColor="#de2910"
@@ -28,9 +28,9 @@
 4.72784,17.22201 15.21355,31.09815 28.78703,38.06438 z"/>
 
   <group
-      android:rotation="72"
       android:pivotX="450"
-      android:pivotY="300">
+      android:pivotY="300"
+      android:rotation="72">
     <path
         android:fillColor="#fff"
         android:pathData="M 449.96406,299.9134 c -105.26305,-44.48626 -58.60174,-181.58185
@@ -50,9 +50,9 @@
 4.72784,17.22201 15.21355,31.09815 28.78703,38.06438 z"/>
   </group>
   <group
-      android:rotation="144"
       android:pivotX="450"
-      android:pivotY="300">
+      android:pivotY="300"
+      android:rotation="144">
     <path
         android:fillColor="#fff"
         android:pathData="M 449.96406,299.9134 c -105.26305,-44.48626 -58.60174,-181.58185
@@ -72,9 +72,9 @@
 4.72784,17.22201 15.21355,31.09815 28.78703,38.06438 z"/>
   </group>
   <group
-      android:rotation="216"
       android:pivotX="450"
-      android:pivotY="300">
+      android:pivotY="300"
+      android:rotation="216">
     <path
         android:fillColor="#fff"
         android:pathData="M 449.96406,299.9134 c -105.26305,-44.48626 -58.60174,-181.58185
@@ -94,9 +94,9 @@
 4.72784,17.22201 15.21355,31.09815 28.78703,38.06438 z"/>
   </group>
   <group
-      android:rotation="-72"
       android:pivotX="450"
-      android:pivotY="300">
+      android:pivotY="300"
+      android:rotation="-72">
     <path
         android:fillColor="#fff"
         android:pathData="M 449.96406,299.9134 c -105.26305,-44.48626 -58.60174,-181.58185

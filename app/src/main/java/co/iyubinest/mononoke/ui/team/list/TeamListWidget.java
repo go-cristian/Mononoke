@@ -1,4 +1,4 @@
-package co.iyubinest.mononoke.ui.mate.list;
+package co.iyubinest.mononoke.ui.team.list;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -16,26 +16,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.iyubinest.mononoke.R;
 import co.iyubinest.mononoke.common.LoadImage;
-import co.iyubinest.mononoke.data.mates.Mate;
-import co.iyubinest.mononoke.data.mates.list.RequestMates;
+import co.iyubinest.mononoke.data.team.Mate;
+import co.iyubinest.mononoke.data.team.list.RequestTeam;
 import java.util.ArrayList;
 import java.util.List;
 
 import static co.iyubinest.mononoke.common.LoadImage.OPTION.FIT;
 
-class MatesWidget extends RecyclerView {
+class TeamListWidget extends RecyclerView {
 
   private MateAdapter adapter = new MateAdapter();
 
-  public MatesWidget(Context context) {
+  public TeamListWidget(Context context) {
     this(context, null);
   }
 
-  public MatesWidget(Context context, @Nullable AttributeSet attrs) {
+  public TeamListWidget(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     setAdapter(adapter);
     int spanCount =
-        getContext().getResources().getInteger(R.integer.mate_list_columns);
+        getContext().getResources().getInteger(R.integer.team_list_columns);
     setLayoutManager(new GridLayoutManager(getContext(), spanCount));
     setBackgroundColor(Color.TRANSPARENT);
   }
@@ -48,7 +48,7 @@ class MatesWidget extends RecyclerView {
     adapter.add(user);
   }
 
-  public void updateStatus(RequestMates.NewStatusEvent event) {
+  public void updateStatus(RequestTeam.NewStatusEvent event) {
     adapter.updateStatus(event);
   }
 
@@ -70,7 +70,7 @@ class MatesWidget extends RecyclerView {
     @Override
     public MateHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       return new MateHolder(LayoutInflater.from(parent.getContext())
-          .inflate(R.layout.mate_list_item, parent, false));
+          .inflate(R.layout.team_list_item, parent, false));
     }
 
     @Override
@@ -95,12 +95,12 @@ class MatesWidget extends RecyclerView {
       this.listener = listener;
     }
 
-    public void add(Mate user) {
+    void add(Mate user) {
       mates.add(user);
       notifyItemInserted(mates.size());
     }
 
-    public void updateStatus(RequestMates.NewStatusEvent event) {
+    void updateStatus(RequestTeam.NewStatusEvent event) {
       int index = findByName(event.user());
       Mate oldMate = mates.get(index);
       Mate newMate =

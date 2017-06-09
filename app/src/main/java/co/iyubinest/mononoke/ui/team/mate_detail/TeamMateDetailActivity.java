@@ -1,8 +1,9 @@
-package co.iyubinest.mononoke.ui.mate.detail;
+package co.iyubinest.mononoke.ui.team.mate_detail;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,16 +13,17 @@ import butterknife.OnClick;
 import co.iyubinest.mononoke.R;
 import co.iyubinest.mononoke.common.BaseActivity;
 import co.iyubinest.mononoke.common.LoadImage;
-import co.iyubinest.mononoke.data.mates.Mate;
-import co.iyubinest.mononoke.data.mates.update.SocketMateUpdate;
-import co.iyubinest.mononoke.ui.mate.list.MateListActivity;
+import co.iyubinest.mononoke.data.team.Mate;
+import co.iyubinest.mononoke.data.team.mates.SocketTeamMateUpdate;
+import co.iyubinest.mononoke.ui.team.list.TeamListActivity;
 
 import static co.iyubinest.mononoke.common.LoadImage.OPTION.FIT;
 
-public class MateDetailActivity extends BaseActivity implements MateDetailView {
+public class TeamMateDetailActivity extends BaseActivity
+    implements TeamMateDetailScreen {
 
   public static final String MATE_EXTRA = "MATE_EXTRA";
-  @BindView(R.id.mate_detail_name) TextView nameView;
+  @BindView(R.id.mate_detail_toolbar) Toolbar toolbarView;
   @BindView(R.id.mate_detail_avatar) ImageView avatarView;
   @BindView(R.id.mate_detail_github) TextView githubView;
   @BindView(R.id.mate_detail_location) ImageView locationView;
@@ -30,10 +32,10 @@ public class MateDetailActivity extends BaseActivity implements MateDetailView {
   @BindView(R.id.mate_detail_tags) TextView tagsView;
   @BindView(R.id.mate_detail_status) EditText statusField;
 
-  MateDetailPresenter presenter;
+  TeamMateDetailPresenter presenter;
 
   public static Intent create(Context context, Mate mate) {
-    Intent intent = new Intent(context, MateDetailActivity.class);
+    Intent intent = new Intent(context, TeamMateDetailActivity.class);
     intent.putExtra(MATE_EXTRA, mate);
     return intent;
   }
@@ -41,11 +43,13 @@ public class MateDetailActivity extends BaseActivity implements MateDetailView {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.mate_detail_activity);
+    setContentView(R.layout.team_mate_detail_activity);
     ButterKnife.bind(this);
+    configure(toolbarView);
     showMate(mate());
-    SocketMateUpdate interactor = new SocketMateUpdate(dependencies().client());
-    presenter = new MateDetailPresenter(interactor, this);
+    SocketTeamMateUpdate interactor =
+        new SocketTeamMateUpdate(dependencies().client());
+    presenter = new TeamMateDetailPresenter(interactor, this);
   }
 
   @OnClick(R.id.mate_detail_update)
@@ -65,13 +69,20 @@ public class MateDetailActivity extends BaseActivity implements MateDetailView {
 
   @Override
   public void updateList(String status, Mate mate) {
-    setResult(RESULT_OK, MateListActivity.updateIntent(status, mate));
+    setResult(RESULT_OK, TeamListActivity.updateIntent(status, mate));
     finish();
+  }
+
+  private void configure(Toolbar toolbarView) {
+    setSupportActionBar(toolbarView);
+    toolbarView.setNavigationIcon(
+        getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+    toolbarView.setNavigationOnClickListener(v -> onBackPressed());
   }
 
   private void showMate(Mate mate) {
     LoadImage.from(mate.avatar(), avatarView, FIT);
-    nameView.setText(mate.name());
+    setTitle(mate.name());
     roleView.setText(mate.role());
     githubView.setText(mate.github());
     languagesView.setText(mate.languages().toString());

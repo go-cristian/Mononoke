@@ -1,7 +1,7 @@
-package co.iyubinest.mononoke.data.mates.list;
+package co.iyubinest.mononoke.data.team.list;
 
 import co.iyubinest.mononoke.BuildConfig;
-import co.iyubinest.mononoke.data.mates.Mate;
+import co.iyubinest.mononoke.data.team.Mate;
 import com.squareup.moshi.Moshi;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -18,13 +18,13 @@ import okhttp3.WebSocketListener;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
 
-public class RetrofitRequestMates implements RequestMates {
+public class RetrofitRequestTeam implements RequestTeam {
 
   private final TeamApi api;
   private final OkHttpClient client;
   private Map<String, String> cache;
 
-  public RetrofitRequestMates(Retrofit retrofit, OkHttpClient client) {
+  public RetrofitRequestTeam(Retrofit retrofit, OkHttpClient client) {
     this.api = retrofit.create(TeamApi.class);
     this.client = client;
   }
@@ -68,7 +68,7 @@ public class RetrofitRequestMates implements RequestMates {
           new Request.Builder().url(BuildConfig.BASE_WS_URL).build(), listener);
       e.setDisposable(new Disposable() {
 
-        public boolean disposed;
+        private boolean disposed;
 
         @Override
         public void dispose() {
@@ -121,10 +121,6 @@ public class RetrofitRequestMates implements RequestMates {
     return event;
   }
 
-  static class NewUserResponse {
-    TeamResponse user;
-  }
-
   interface TeamApi {
 
     @GET("/team")
@@ -132,6 +128,10 @@ public class RetrofitRequestMates implements RequestMates {
 
     @GET("/roles")
     Flowable<Map<String, String>> roles();
+  }
+
+  private static class NewUserResponse {
+    TeamResponse user;
   }
 
   private static class TeamResponse {
