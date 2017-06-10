@@ -1,11 +1,13 @@
 package co.iyubinest.mononoke.ui.team.mate_detail;
 
-import co.iyubinest.mononoke.data.team.Mate;
+import co.iyubinest.mononoke.data.User;
 
 interface TeamMateDetailScreen {
   String status();
 
-  void updateList(String status, Mate mate);
+  void updateList(final String status, final User user);
 
-  Mate mate();
+  User user();
+
+  void error(Throwable throwable);
 }

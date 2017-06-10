@@ -1,10 +1,13 @@
 package co.iyubinest.mononoke.ui.team.list;
 
+import co.iyubinest.mononoke.data.User;
 import java.util.List;
 
 interface TeamListScreen {
 
-  void show(List<TeamListPresenter.User> users);
+  void show(final List<User> users);
 
-  void update(TeamListPresenter.User user);
+  void update(final User user);
+
+  void add(final User user);
 }

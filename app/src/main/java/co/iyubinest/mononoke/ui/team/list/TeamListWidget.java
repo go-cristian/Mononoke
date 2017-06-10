@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.iyubinest.mononoke.R;
 import co.iyubinest.mononoke.common.LoadImage;
+import co.iyubinest.mononoke.data.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import static co.iyubinest.mononoke.common.LoadImage.OPTION.FIT;
 
 class TeamListWidget extends RecyclerView {
 
-  private TeamListAdapter adapter = new TeamListAdapter();
+  private final TeamListAdapter adapter = new TeamListAdapter();
 
   public TeamListWidget(Context context) {
     this(context, null);
@@ -38,43 +39,43 @@ class TeamListWidget extends RecyclerView {
     setBackgroundColor(Color.TRANSPARENT);
   }
 
-  public void show(List<TeamListPresenter.User> users) {
+  public void show(List<User> users) {
     adapter.show(users);
   }
-/*  public void add(Mate user) {
-    adapter.add(user);
-  }
 
- */
-
-  public void onUserSelected(OnUserSelected listener) {
+  public void onUserSelected(final OnUserSelected listener) {
     adapter.onUserSelected(listener);
   }
 
-  public void update(TeamListPresenter.User user) {
+  public void add(final User user) {
+    adapter.add(user);
+  }
+
+  public void update(final User user) {
     adapter.update(user);
   }
 
   interface OnUserSelected {
 
-    void onMateSelected(TeamListPresenter.User mate);
+    void onMateSelected(final User mate);
   }
 
   private static class TeamListAdapter
       extends RecyclerView.Adapter<TeamListHolder> {
 
-    private final List<TeamListPresenter.User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     private OnUserSelected listener;
 
     @Override
-    public TeamListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TeamListHolder onCreateViewHolder(final ViewGroup parent,
+        int viewType) {
       return new TeamListHolder(LayoutInflater.from(parent.getContext())
           .inflate(R.layout.team_list_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(TeamListHolder holder, int position) {
+    public void onBindViewHolder(final TeamListHolder holder, int position) {
       holder.mate(users.get(position));
       holder.onPositionSelected(pos -> {
         if (listener != null) listener.onMateSelected(users.get(pos));
@@ -86,21 +87,21 @@ class TeamListWidget extends RecyclerView {
       return users.size();
     }
 
-    void show(List<TeamListPresenter.User> users) {
+    void show(final List<User> users) {
       this.users.addAll(users);
       notifyDataSetChanged();
     }
 
-    void onUserSelected(OnUserSelected listener) {
+    void onUserSelected(final OnUserSelected listener) {
       this.listener = listener;
     }
 
-    void add(TeamListPresenter.User user) {
+    void add(final User user) {
       users.add(user);
       notifyItemInserted(users.size());
     }
 
-    public void update(TeamListPresenter.User user) {
+    public void update(final User user) {
       int index = findByName(user.github());
       if (index != -1) {
         users.set(index, user);
@@ -108,9 +109,9 @@ class TeamListWidget extends RecyclerView {
       }
     }
 
-    private int findByName(String name) {
+    private int findByName(final String name) {
       for (int i = 0; i < users.size(); i++) {
-        TeamListPresenter.User user = users.get(i);
+        final User user = users.get(i);
         if (user.github().equals(name)) return i;
       }
       return -1;
@@ -127,6 +128,7 @@ class TeamListWidget extends RecyclerView {
     @BindView(R.id.team_list_item_languages) TextView languagesView;
     @BindView(R.id.team_list_item_tags) TextView tagsView;
     @BindView(R.id.team_list_item_status) TextView statusView;
+
     private OnPositionSelected listener;
 
     TeamListHolder(View itemView) {
@@ -138,7 +140,7 @@ class TeamListWidget extends RecyclerView {
       listener = onPositionSelected;
     }
 
-    void mate(TeamListPresenter.User user) {
+    void mate(User user) {
       itemView.setOnClickListener(v -> {
         if (listener != null) listener.onPositionSelected(getAdapterPosition());
       });
