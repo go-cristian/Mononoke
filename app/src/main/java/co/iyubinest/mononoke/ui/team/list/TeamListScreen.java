@@ -1,15 +1,13 @@
 package co.iyubinest.mononoke.ui.team.list;
 
-import co.iyubinest.mononoke.data.team.Mate;
-import co.iyubinest.mononoke.data.team.list.RequestTeam;
+import co.iyubinest.mononoke.data.User;
 import java.util.List;
 
 interface TeamListScreen {
-  void showAll(List<Mate> mates);
 
-  void showError(Throwable throwable);
+  void show(final List<User> users);
 
-  void update(RequestTeam.NewStatusEvent event);
+  void update(final User user);
 
-  void update(RequestTeam.NewUserEvent event);
+  void add(final User user);
 }

@@ -1,37 +1,59 @@
 package co.iyubinest.mononoke.ui.team.list;
 
-import co.iyubinest.mononoke.data.team.list.RequestTeam;
+import co.iyubinest.mononoke.data.TeamEvent;
+import co.iyubinest.mononoke.data.team.TeamInteractor;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
-class TeamListPresenter {
-  private final RequestTeam interactor;
-  private final TeamListScreen view;
+public class TeamListPresenter {
+
   private final CompositeDisposable disposable = new CompositeDisposable();
+  private final TeamListScreen view;
+  private final TeamInteractor interactor;
 
-  TeamListPresenter(RequestTeam interactor, TeamListScreen view) {
-    this.interactor = interactor;
+  public TeamListPresenter(TeamListScreen view, TeamInteractor interactor) {
     this.view = view;
+    this.interactor = interactor;
   }
 
-  void requestAll() {
-    disposable.add(interactor.connect().doAfterNext(mates -> subscribeUpdates())
-        .subscribe(view::showAll, view::showError));
+  public void requestAll() {
+    disposable.add(interactor.users().subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(this::success, this::error));
   }
 
-  private void subscribeUpdates() {
-    disposable.add(
-        interactor.subscribeUpdates().subscribe(this::update, view::showError));
-  }
+  private void success(final TeamEvent event) {
+    if (event instanceof TeamEvent.All) {
+      success((TeamEvent.All) event);
+    } else if (event instanceof TeamEvent.Status) {
+      success((TeamEvent.Status) event);
+    } else if (event instanceof TeamEvent.New) {
+      success((TeamEvent.New) event);
+    } else if (event instanceof TeamEvent.None) {
 
-  private void update(RequestTeam.UpdateEvent event) {
-    if (event instanceof RequestTeam.NewUserEvent) {
-      view.update((RequestTeam.NewUserEvent) event);
-    } else if (event instanceof RequestTeam.NewStatusEvent) {
-      view.update((RequestTeam.NewStatusEvent) event);
+    } else {
+      error(new Exception());
     }
   }
 
-  void unsubscribeUpdates() {
+  private void success(final TeamEvent.All event) {
+    view.show(event.users());
+  }
+
+  private void success(final TeamEvent.Status event) {
+    view.update(event.user());
+  }
+
+  private void success(final TeamEvent.New event) {
+    view.add(event.user());
+  }
+
+  private void error(final Throwable throwable) {
+
+  }
+
+  public void finish() {
     disposable.dispose();
   }
 }
