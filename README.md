@@ -20,6 +20,9 @@ Libraries
  * Retrofit
  * Moshi
  * RxJava 2
+ * DaggerMock
+ * JUnit
+ * Espresso
 
 License
 -------

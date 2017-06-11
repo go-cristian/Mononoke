@@ -15,7 +15,10 @@ import co.iyubinest.mononoke.data.BasicUser;
 import co.iyubinest.mononoke.data.TeamEvent;
 import co.iyubinest.mononoke.data.User;
 import co.iyubinest.mononoke.data.team.get.TeamInteractor;
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
+import io.reactivex.subjects.BehaviorSubject;
+import io.reactivex.subjects.Subject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -40,9 +43,14 @@ public class TeamListActivityShould {
 
   private static final int TOTAL = 10;
   private static final List<User> USERS = new ArrayList<>(TOTAL);
-  private static final Flowable<TeamEvent> ALL_USERS_EVENT =
-      Flowable.defer(() -> Flowable.just(TeamEvent.All.with(USERS)));
+  private static final Subject<TeamEvent> subject = BehaviorSubject.create();
+  private static final TeamEvent ALL_USERS_EVENT = TeamEvent.All.with(USERS);
   private static final Flowable ERROR = Flowable.error(new Exception());
+  private static final User UPDATE_USER = BasicUser
+      .create("", "avatar", "github2", "", "", "ready", Collections.emptyList(),
+          Collections.emptyList());
+  private static final TeamEvent UPDATE_USER_EVENT =
+      TeamEvent.Status.with(UPDATE_USER);
 
   static {
     for (int i = 0; i < TOTAL; i++) {
@@ -54,7 +62,7 @@ public class TeamListActivityShould {
     }
   }
 
-  @Rule public ActivityTestRule rule =
+  @Rule public ActivityTestRule<TeamListActivity> rule =
       new ActivityTestRule<>(TeamListActivity.class, false, false);
   @Rule public DaggerRule daggerRule = new DaggerRule();
   @Mock public TeamInteractor interactor;
@@ -66,33 +74,47 @@ public class TeamListActivityShould {
 
   @Test
   public void showAllUsers() {
-    when(interactor.users()).thenReturn(ALL_USERS_EVENT);
+    when(interactor.users())
+        .thenReturn(subject.toFlowable(BackpressureStrategy.LATEST));
+    subject.onNext(ALL_USERS_EVENT);
     rule.launchActivity(new Intent());
     onViewId(R.id.team_list).check(matches(isDisplayed()));
     onViewId(R.id.team_list).check(count(TOTAL));
     //check all elements on recycler view
-    for (int productCount = 0; productCount < TOTAL; productCount++) {
-
-      User user = USERS.get(productCount);
-      onViewId(R.id.team_list).perform(scrollTo(productCount));
-      onViewId(R.id.team_list)
-          .check(item(productCount, R.id.team_list_item_name, user.name()));
-      onViewId(R.id.team_list)
-          .check(item(productCount, R.id.team_list_item_github, user.github()));
-      onViewId(R.id.team_list)
-          .check(item(productCount, R.id.team_list_item_role, user.role()));
-      onViewId(R.id.team_list).check(
-          item(productCount, R.id.team_list_item_status,
-              string(R.string.team_list_item_status)));
-
-      onViewId(R.id.team_list).perform(clickAt(productCount));
-      //checks on new screen
-      onViewId(R.id.team_mate_detail_github)
-          .check(matches(withText(user.github())));
-      onViewId(R.id.team_mate_detail_role)
-          .check(matches(withText(user.role())));
-      Espresso.pressBack();
+    for (int i = 0; i < TOTAL; i++) {
+      User user = USERS.get(i);
+      verifyItemPosition(user, i);
     }
+  }
+
+  @Test
+  public void updateUsersStatus() {
+    when(interactor.users())
+        .thenReturn(subject.toFlowable(BackpressureStrategy.LATEST));
+    subject.onNext(ALL_USERS_EVENT);
+    rule.launchActivity(new Intent());
+    subject.onNext(UPDATE_USER_EVENT);
+    onViewId(R.id.team_list).perform(scrollTo(2));
+    onViewId(R.id.team_list)
+        .check(item(2, R.id.team_list_item_status, "ready"));
+  }
+
+  private void verifyItemPosition(User user, int index) {
+    onViewId(R.id.team_list).perform(scrollTo(index));
+    onViewId(R.id.team_list)
+        .check(item(index, R.id.team_list_item_name, user.name()));
+    onViewId(R.id.team_list)
+        .check(item(index, R.id.team_list_item_github, user.github()));
+    onViewId(R.id.team_list)
+        .check(item(index, R.id.team_list_item_role, user.role()));
+    onViewId(R.id.team_list).check(item(index, R.id.team_list_item_status,
+        string(R.string.team_list_item_status)));
+    onViewId(R.id.team_list).perform(clickAt(index));
+    //checks on new screen
+    onViewId(R.id.team_mate_detail_github)
+        .check(matches(withText(user.github())));
+    onViewId(R.id.team_mate_detail_role).check(matches(withText(user.role())));
+    Espresso.pressBack();
   }
 
   private ViewInteraction onViewId(@IdRes int idRes) {
