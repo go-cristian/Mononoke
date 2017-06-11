@@ -16,6 +16,7 @@ public class BasicUser implements User {
       return new BasicUser[size];
     }
   };
+
   private final String name;
   private final String avatar;
   private final String github;
@@ -38,7 +39,7 @@ public class BasicUser implements User {
     this.tags = tags;
   }
 
-  protected BasicUser(Parcel in) {
+  private BasicUser(Parcel in) {
     this.name = in.readString();
     this.avatar = in.readString();
     this.github = in.readString();

@@ -1,11 +1,13 @@
 package co.iyubinest.mononoke;
 
 import co.iyubinest.mononoke.socket.RxSocket;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.squareup.moshi.Moshi;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
@@ -20,7 +22,10 @@ class AppModule {
 
   @Provides
   public OkHttpClient okHttpClient() {
-    return new OkHttpClient.Builder().build();
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    return new OkHttpClient.Builder().addInterceptor(new StethoInterceptor())
+        .addInterceptor(interceptor).build();
   }
 
   @Provides

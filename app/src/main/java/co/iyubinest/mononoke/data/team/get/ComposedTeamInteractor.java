@@ -1,4 +1,4 @@
-package co.iyubinest.mononoke.data.team;
+package co.iyubinest.mononoke.data.team.get;
 
 import android.util.Log;
 import co.iyubinest.mononoke.data.BasicUser;

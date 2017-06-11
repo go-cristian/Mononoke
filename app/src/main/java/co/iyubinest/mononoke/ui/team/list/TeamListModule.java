@@ -3,11 +3,11 @@ package co.iyubinest.mononoke.ui.team.list;
 import co.iyubinest.mononoke.data.User;
 import co.iyubinest.mononoke.data.roles.HttpRolesRepository;
 import co.iyubinest.mononoke.data.roles.RolesRepository;
-import co.iyubinest.mononoke.data.team.ComposedTeamInteractor;
-import co.iyubinest.mononoke.data.team.HttpTeamRepository;
-import co.iyubinest.mononoke.data.team.TeamInteractor;
-import co.iyubinest.mononoke.data.team.TeamRepository;
-import co.iyubinest.mononoke.data.team.TeamService;
+import co.iyubinest.mononoke.data.team.get.ComposedTeamInteractor;
+import co.iyubinest.mononoke.data.team.get.HttpTeamRepository;
+import co.iyubinest.mononoke.data.team.get.TeamInteractor;
+import co.iyubinest.mononoke.data.team.get.TeamRepository;
+import co.iyubinest.mononoke.data.team.get.TeamService;
 import co.iyubinest.mononoke.data.updates.SocketUpdatesRepository;
 import co.iyubinest.mononoke.data.updates.UpdatesRepository;
 import co.iyubinest.mononoke.socket.RxSocket;
@@ -28,23 +28,28 @@ public class TeamListModule {
   }
 
   @Provides
-  public TeamInteractor teamInteractor(TeamRepository team,
-      RolesRepository roles, UpdatesRepository status) {
+  TeamListScreen teamListScreen() {
+    return activity;
+  }
+
+  @Provides
+  TeamInteractor teamInteractor(TeamRepository team, RolesRepository roles,
+      UpdatesRepository status) {
     return new ComposedTeamInteractor(team, roles, status);
   }
 
   @Provides
-  public TeamRepository teamRepository(Retrofit retrofit) {
+  TeamRepository teamRepository(Retrofit retrofit) {
     return new HttpTeamRepository(retrofit);
   }
 
   @Provides
-  public RolesRepository rolesRepository(Retrofit retrofit) {
+  RolesRepository rolesRepository(Retrofit retrofit) {
     return new HttpRolesRepository(retrofit);
   }
 
   @Provides
-  public UpdatesRepository updatesRepository(Moshi moshi, RxSocket socket,
+  UpdatesRepository updatesRepository(Moshi moshi, RxSocket socket,
       TeamRepository team, RolesRepository roles) {
     final Flowable<List<User>> cache =
         Flowable.zip(team.get(), roles.get(), (teamResponses, rolesMap) -> {

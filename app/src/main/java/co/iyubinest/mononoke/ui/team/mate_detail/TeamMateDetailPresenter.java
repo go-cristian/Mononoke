@@ -3,12 +3,14 @@ package co.iyubinest.mononoke.ui.team.mate_detail;
 import co.iyubinest.mononoke.data.team.update.TeamMateUpdateInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import javax.inject.Inject;
 
 class TeamMateDetailPresenter {
 
   private final TeamMateDetailScreen view;
   private final TeamMateUpdateInteractor interactor;
 
+  @Inject
   TeamMateDetailPresenter(TeamMateDetailScreen view,
       TeamMateUpdateInteractor interactor) {
     this.view = view;

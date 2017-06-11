@@ -1,4 +1,4 @@
-package co.iyubinest.mononoke.data.team;
+package co.iyubinest.mononoke.data.team.get;
 
 import io.reactivex.Flowable;
 import java.util.List;

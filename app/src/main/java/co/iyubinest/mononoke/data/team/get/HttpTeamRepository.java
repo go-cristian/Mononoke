@@ -1,4 +1,4 @@
-package co.iyubinest.mononoke.data.team;
+package co.iyubinest.mononoke.data.team.get;
 
 import co.iyubinest.mononoke.cache.Cache;
 import co.iyubinest.mononoke.cache.MemoryCache;

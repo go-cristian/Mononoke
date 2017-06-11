@@ -1,10 +1,11 @@
 package co.iyubinest.mononoke.ui.team.list;
 
 import co.iyubinest.mononoke.data.TeamEvent;
-import co.iyubinest.mononoke.data.team.TeamInteractor;
+import co.iyubinest.mononoke.data.team.get.TeamInteractor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import javax.inject.Inject;
 
 public class TeamListPresenter {
 
@@ -12,12 +13,13 @@ public class TeamListPresenter {
   private final TeamListScreen view;
   private final TeamInteractor interactor;
 
-  public TeamListPresenter(TeamListScreen view, TeamInteractor interactor) {
+  @Inject
+  TeamListPresenter(TeamListScreen view, TeamInteractor interactor) {
     this.view = view;
     this.interactor = interactor;
   }
 
-  public void requestAll() {
+  void requestAll() {
     disposable.add(interactor.users().subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::success, this::error));
@@ -31,7 +33,7 @@ public class TeamListPresenter {
     } else if (event instanceof TeamEvent.New) {
       success((TeamEvent.New) event);
     } else if (event instanceof TeamEvent.None) {
-
+      //show nothing
     } else {
       error(new Exception());
     }
@@ -50,10 +52,10 @@ public class TeamListPresenter {
   }
 
   private void error(final Throwable throwable) {
-
+    throw new RuntimeException(throwable);
   }
 
-  public void finish() {
+  void finish() {
     disposable.dispose();
   }
 }

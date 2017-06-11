@@ -8,8 +8,20 @@ import dagger.Provides;
 
 @Module
 public class TeamMateDetailModule {
+
+  private final TeamMateDetailActivity activity;
+
+  TeamMateDetailModule(TeamMateDetailActivity activity) {
+    this.activity = activity;
+  }
+
   @Provides
-  public TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
+  TeamMateDetailScreen teamMateDetailScreen() {
+    return activity;
+  }
+
+  @Provides
+  TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
     return new ComposedTeamMateInteractor(socket);
   }
 }

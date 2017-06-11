@@ -15,7 +15,6 @@ import co.iyubinest.mononoke.common.BaseActivity;
 import co.iyubinest.mononoke.common.LoadImage;
 import co.iyubinest.mononoke.data.BasicUser;
 import co.iyubinest.mononoke.data.User;
-import co.iyubinest.mononoke.data.team.update.TeamMateUpdateInteractor;
 import co.iyubinest.mononoke.ui.team.list.TeamListActivity;
 import javax.inject.Inject;
 
@@ -26,6 +25,7 @@ public class TeamMateDetailActivity extends BaseActivity
 
   public static final String MATE_EXTRA = "MATE_EXTRA";
 
+  @Inject TeamMateDetailPresenter presenter;
   @BindView(R.id.team_mate_detail_toolbar) Toolbar toolbarView;
   @BindView(R.id.team_mate_detail_avatar) ImageView avatarView;
   @BindView(R.id.team_mate_detail_github) TextView githubView;
@@ -34,10 +34,6 @@ public class TeamMateDetailActivity extends BaseActivity
   @BindView(R.id.team_mate_detail_languages) TextView languagesView;
   @BindView(R.id.team_mate_detail_tags) TextView tagsView;
   @BindView(R.id.team_mate_detail_status) EditText statusField;
-
-  @Inject TeamMateUpdateInteractor interactor;
-
-  private TeamMateDetailPresenter presenter;
 
   public static Intent intent(Context context, User user) {
     Intent intent = new Intent(context, TeamMateDetailActivity.class);
@@ -50,11 +46,10 @@ public class TeamMateDetailActivity extends BaseActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.team_mate_detail_activity);
     ButterKnife.bind(this);
-    appComponent().teamMateDetailComponent(new TeamMateDetailModule())
+    appComponent().teamMateDetailComponent(new TeamMateDetailModule(this))
         .inject(this);
     configure(toolbarView);
     show(user());
-    presenter = new TeamMateDetailPresenter(this, interactor);
   }
 
   @OnClick(R.id.team_mate_detail_update)
