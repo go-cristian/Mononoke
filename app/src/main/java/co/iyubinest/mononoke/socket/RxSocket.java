@@ -22,7 +22,7 @@ public class RxSocket {
   public RxSocket(OkHttpClient client, String url) {
     this.client = client;
     this.url = url;
-    this.receive = Flowable.create(this::receiver, BackpressureStrategy.LATEST);
+    this.receive = Flowable.create(this::receiver, BackpressureStrategy.BUFFER);
   }
 
   private void receiver(final FlowableEmitter<String> emitter) {

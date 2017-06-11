@@ -15,7 +15,9 @@ import co.iyubinest.mononoke.common.BaseActivity;
 import co.iyubinest.mononoke.common.LoadImage;
 import co.iyubinest.mononoke.data.BasicUser;
 import co.iyubinest.mononoke.data.User;
+import co.iyubinest.mononoke.data.team.update.TeamMateUpdateInteractor;
 import co.iyubinest.mononoke.ui.team.list.TeamListActivity;
+import javax.inject.Inject;
 
 import static co.iyubinest.mononoke.common.LoadImage.OPTION.FIT;
 
@@ -33,6 +35,8 @@ public class TeamMateDetailActivity extends BaseActivity
   @BindView(R.id.team_mate_detail_tags) TextView tagsView;
   @BindView(R.id.team_mate_detail_status) EditText statusField;
 
+  @Inject TeamMateUpdateInteractor interactor;
+
   private TeamMateDetailPresenter presenter;
 
   public static Intent intent(Context context, User user) {
@@ -46,10 +50,11 @@ public class TeamMateDetailActivity extends BaseActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.team_mate_detail_activity);
     ButterKnife.bind(this);
+    appComponent().teamMateDetailComponent(new TeamMateDetailModule())
+        .inject(this);
     configure(toolbarView);
     show(user());
-    presenter =
-        new TeamMateDetailPresenter(this, dependencies().teamMateInteractor());
+    presenter = new TeamMateDetailPresenter(this, interactor);
   }
 
   @OnClick(R.id.team_mate_detail_update)

@@ -1,32 +1,25 @@
-Currency CLIENT
+Socket client
 ======
 
-A sample Android app which showcases common open source libraries.
-The App tries to use a clean OOP structure that's focused on tests.
-
-This project doesn't contains any comments because it tries to be self-commented, this approach 
-encourages that the code is the documentation and it requires to be updated as it evolves.
+A sample Android app which showcases how is working with OkHttp's Web Socket
+using RxJava2.
 
 Screenshots
 ---------
 
 <div align="center">
     <img src="./art/list.png" />
+    <img src="./art/detail.png" />
 </div>
 
 Libraries
 ---------
 
- * Dagger
+ * Dagger 2
  * ButterKnife
  * Retrofit
- * Auto-Parcel
  * Moshi
  * RxJava 2
- * Espresso
- * JUnit
- * Mockito
- * MockWebServer
 
 License
 -------

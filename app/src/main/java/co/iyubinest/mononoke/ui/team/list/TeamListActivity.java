@@ -8,8 +8,10 @@ import butterknife.ButterKnife;
 import co.iyubinest.mononoke.R;
 import co.iyubinest.mononoke.common.BaseActivity;
 import co.iyubinest.mononoke.data.User;
+import co.iyubinest.mononoke.data.team.TeamInteractor;
 import co.iyubinest.mononoke.ui.team.mate_detail.TeamMateDetailActivity;
 import java.util.List;
+import javax.inject.Inject;
 
 public class TeamListActivity extends BaseActivity implements TeamListScreen {
 
@@ -18,6 +20,8 @@ public class TeamListActivity extends BaseActivity implements TeamListScreen {
 
   @BindView(R.id.loading) View loadingView;
   @BindView(R.id.mate_list) TeamListWidget teamListWidget;
+
+  @Inject TeamInteractor interactor;
 
   private TeamListPresenter presenter;
 
@@ -32,8 +36,9 @@ public class TeamListActivity extends BaseActivity implements TeamListScreen {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.team_list_activity);
     ButterKnife.bind(this);
+    appComponent().teamListComponent(new TeamListModule(this)).inject(this);
     teamListWidget.onUserSelected(this::show);
-    presenter = new TeamListPresenter(this, dependencies().teamInteractor());
+    presenter = new TeamListPresenter(this, interactor);
     presenter.requestAll();
   }
 
