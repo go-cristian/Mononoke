@@ -3,7 +3,7 @@ package co.iyubinest.mononoke.ui.team.list;
 import co.iyubinest.mononoke.data.User;
 import java.util.List;
 
-interface TeamListScreen {
+public interface TeamListScreen {
 
   void show(final List<User> users);
 

@@ -28,28 +28,28 @@ public class TeamListModule {
   }
 
   @Provides
-  TeamListScreen teamListScreen() {
+  public TeamListScreen teamListScreen() {
     return activity;
   }
 
   @Provides
-  TeamInteractor teamInteractor(TeamRepository team, RolesRepository roles,
-      UpdatesRepository status) {
+  public TeamInteractor teamInteractor(TeamRepository team,
+      RolesRepository roles, UpdatesRepository status) {
     return new ComposedTeamInteractor(team, roles, status);
   }
 
   @Provides
-  TeamRepository teamRepository(Retrofit retrofit) {
+  public TeamRepository teamRepository(Retrofit retrofit) {
     return new HttpTeamRepository(retrofit);
   }
 
   @Provides
-  RolesRepository rolesRepository(Retrofit retrofit) {
+  public RolesRepository rolesRepository(Retrofit retrofit) {
     return new HttpRolesRepository(retrofit);
   }
 
   @Provides
-  UpdatesRepository updatesRepository(Moshi moshi, RxSocket socket,
+  public UpdatesRepository updatesRepository(Moshi moshi, RxSocket socket,
       TeamRepository team, RolesRepository roles) {
     final Flowable<List<User>> cache =
         Flowable.zip(team.get(), roles.get(), (teamResponses, rolesMap) -> {

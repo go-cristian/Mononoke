@@ -11,17 +11,17 @@ public class TeamMateDetailModule {
 
   private final TeamMateDetailActivity activity;
 
-  TeamMateDetailModule(TeamMateDetailActivity activity) {
+  public TeamMateDetailModule(TeamMateDetailActivity activity) {
     this.activity = activity;
   }
 
   @Provides
-  TeamMateDetailScreen teamMateDetailScreen() {
+  public TeamMateDetailScreen teamMateDetailScreen() {
     return activity;
   }
 
   @Provides
-  TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
+  public TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
     return new ComposedTeamMateInteractor(socket);
   }
 }

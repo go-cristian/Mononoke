@@ -19,7 +19,7 @@ public class TeamListActivity extends BaseActivity implements TeamListScreen {
 
   @Inject TeamListPresenter presenter;
   @BindView(R.id.loading) View loadingView;
-  @BindView(R.id.mate_list) TeamListWidget teamListWidget;
+  @BindView(R.id.team_list) TeamListWidget teamListWidget;
 
   public static Intent updateIntent(final User user) {
     Intent intent = new Intent();
