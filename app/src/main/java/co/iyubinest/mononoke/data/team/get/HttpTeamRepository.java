@@ -20,7 +20,7 @@ public class HttpTeamRepository implements TeamRepository {
   @Override
   public Flowable<List<TeamService.TeamResponse>> get() {
     return Flowable
-        .concat(service.team().retryWhen(RxUtils.incremental()), cache.get())
+        .concat(cache.get(), service.team().retryWhen(RxUtils.incremental()))
         .take(1).doOnNext(cache::save);
   }
 }

@@ -10,7 +10,9 @@ import io.reactivex.Flowable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.inject.Singleton;
 
+@Singleton
 public class ComposedTeamInteractor implements TeamInteractor {
   private final TeamRepository team;
   private final RolesRepository roles;
@@ -36,9 +38,9 @@ public class ComposedTeamInteractor implements TeamInteractor {
     final Flowable<TeamEvent> allEvents =
         Flowable.zip(team.get(), roles.get(), this::zip);
     final Flowable<TeamEvent> statusEvents = status.get();
-    return Flowable.merge(allEvents, statusEvents)
+    return Flowable.concat(allEvents, statusEvents)
         .doOnNext(teamEvent -> Log.v("New Update", teamEvent.toString()))
-        .doOnError(throwable -> new TeamEvent.None());
+        .onErrorReturn(throwable -> new TeamEvent.None());
   }
 
   private TeamEvent zip(final List<TeamService.TeamResponse> team,

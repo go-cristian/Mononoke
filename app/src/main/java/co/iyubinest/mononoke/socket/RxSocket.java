@@ -32,8 +32,10 @@ public class RxSocket {
               @Override
               public void onMessage(final WebSocket webSocket,
                   final String text) {
-                Log.v("WebSocket", text);
-                emitter.onNext(text);
+                if (text != null) {
+                  Log.v("WebSocket", text);
+                  emitter.onNext(text);
+                }
               }
             });
 

@@ -20,7 +20,7 @@ public class HttpRolesRepository implements RolesRepository {
   @Override
   public Flowable<Map<String, String>> get() {
     return Flowable
-        .concat(service.roles().retryWhen(RxUtils.incremental()), cache.get())
+        .concat(cache.get(), service.roles().retryWhen(RxUtils.incremental()))
         .take(1).doOnNext(cache::save);
   }
 }

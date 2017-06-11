@@ -11,7 +11,7 @@ public class MemoryCache<T> implements Cache<T> {
   public Flowable<T> get() {
     return Flowable.defer(() -> {
       if (response == null) {
-        return Flowable.never();
+        return Flowable.empty();
       } else {
         return Flowable.just(response);
       }
