@@ -1,6 +1,7 @@
 package co.iyubinest.mononoke.ui.team.list;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -33,10 +34,12 @@ class TeamListWidget extends RecyclerView {
   public TeamListWidget(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     setAdapter(adapter);
-    int spanCount =
-        getContext().getResources().getInteger(R.integer.team_list_columns);
+    TypedArray a =
+        context.obtainStyledAttributes(attrs, R.styleable.TeamListWidget, 0, 0);
+    int spanCount = a.getInt(R.styleable.TeamListWidget_columns, 1);
     setLayoutManager(new GridLayoutManager(getContext(), spanCount));
     setBackgroundColor(Color.TRANSPARENT);
+    a.recycle();
   }
 
   public void show(List<User> users) {
