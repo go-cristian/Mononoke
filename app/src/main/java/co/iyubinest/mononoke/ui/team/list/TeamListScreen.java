@@ -10,4 +10,6 @@ public interface TeamListScreen {
   void update(final User user);
 
   void add(final User user);
+
+  void error(String message);
 }

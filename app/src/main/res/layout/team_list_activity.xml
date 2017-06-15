@@ -8,7 +8,10 @@
     style="@style/AppTheme.TeamList.Wrapper"
     >
 
-  <include layout="@layout/loading"/>
+  <include
+      layout="@layout/loading"
+      android:visibility="gone"
+      />
 
   <co.iyubinest.mononoke.ui.team.list.TeamListWidget
       android:id="@+id/team_list"

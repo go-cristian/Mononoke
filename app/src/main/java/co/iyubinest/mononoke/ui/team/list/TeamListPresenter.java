@@ -33,10 +33,14 @@ public class TeamListPresenter {
     } else if (event instanceof TeamEvent.New) {
       success((TeamEvent.New) event);
     } else if (event instanceof TeamEvent.None) {
-      //show nothing
+      error((TeamEvent.None) event);
     } else {
       error(new Exception());
     }
+  }
+
+  private void error(TeamEvent.None event) {
+    view.error(event.message());
   }
 
   private void success(final TeamEvent.All event) {

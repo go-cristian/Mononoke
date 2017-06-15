@@ -55,6 +55,10 @@ class TeamListWidget extends RecyclerView {
     adapter.update(user);
   }
 
+  public ArrayList<User> users() {
+    return new ArrayList<>(adapter.users);
+  }
+
   interface OnUserSelected {
 
     void onMateSelected(final User mate);

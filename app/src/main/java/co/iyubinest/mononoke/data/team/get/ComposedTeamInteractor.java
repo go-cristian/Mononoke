@@ -40,7 +40,8 @@ public class ComposedTeamInteractor implements TeamInteractor {
     final Flowable<TeamEvent> statusEvents = status.get();
     return Flowable.concat(allEvents, statusEvents)
         .doOnNext(teamEvent -> Log.v("New Update", teamEvent.toString()))
-        .onErrorReturn(throwable -> new TeamEvent.None());
+        .onErrorReturn(
+            throwable -> TeamEvent.None.with(throwable.getMessage()));
   }
 
   private TeamEvent zip(final List<TeamService.TeamResponse> team,

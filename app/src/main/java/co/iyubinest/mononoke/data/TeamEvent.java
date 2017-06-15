@@ -68,9 +68,24 @@ public abstract class TeamEvent {
   }
 
   public static final class None extends TeamEvent {
+
+    private final String message;
+
+    private None(String message) {
+      this.message = message;
+    }
+
+    public static None with(String message) {
+      return new None(message);
+    }
+
+    public String message() {
+      return message;
+    }
+
     @Override
     public String toString() {
-      return "Event None";
+      return "Event None " + message;
     }
   }
 }
