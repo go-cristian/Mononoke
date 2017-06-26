@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Singleton;
 
+@SuppressWarnings("Convert2streamapi")
 @Singleton
 public class ComposedTeamInteractor implements TeamInteractor {
   private final TeamRepository team;

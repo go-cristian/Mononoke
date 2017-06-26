@@ -29,6 +29,6 @@ public class LoadImage {
   }
 
   public enum OPTION {
-    FIT, NONE;
+    FIT, NONE
   }
 }

@@ -121,7 +121,10 @@ public class SocketUpdatesRepository implements UpdatesRepository {
   }
 
   private static class UserResponse {
-    String name, avatar, github, gender, location;
+    String name;
+    String avatar;
+    String github;
+    String location;
     List<String> languages, tags;
     Integer role;
   }

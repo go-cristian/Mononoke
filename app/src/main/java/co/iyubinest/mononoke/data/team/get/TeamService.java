@@ -9,7 +9,10 @@ public interface TeamService {
   Flowable<List<TeamResponse>> team();
 
   class TeamResponse {
-    public String name, avatar, github, gender, location;
+    public String name;
+    public String avatar;
+    public String github;
+    public String location;
     public List<String> languages, tags;
     public Integer role;
   }

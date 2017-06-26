@@ -16,8 +16,8 @@ import javax.inject.Inject;
 public class TeamListActivity extends BaseActivity implements TeamListScreen {
 
   public static final String USER_EXTRA = "USER_EXTRA";
+  public static final String USERS_SAVED_EXTRA = "USERS_SAVED_EXTRA";
   private static final int REQUEST_CODE = 100;
-  private static final String USERS = "Users_Extra";
 
   @Inject TeamListPresenter presenter;
   @BindView(R.id.loading) View loadingView;
@@ -43,14 +43,15 @@ public class TeamListActivity extends BaseActivity implements TeamListScreen {
 
   @Override
   protected void onSaveInstanceState(Bundle outState) {
-    outState.putParcelableArrayList("Users", teamListWidget.users());
+    outState.putParcelableArrayList(USERS_SAVED_EXTRA, teamListWidget.users());
     super.onSaveInstanceState(outState);
   }
 
   @Override
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
-    teamListWidget.show(savedInstanceState.getParcelableArrayList("Users"));
+    teamListWidget
+        .show(savedInstanceState.getParcelableArrayList(USERS_SAVED_EXTRA));
   }
 
   @Override

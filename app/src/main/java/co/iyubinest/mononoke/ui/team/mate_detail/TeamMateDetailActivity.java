@@ -3,6 +3,7 @@ package co.iyubinest.mononoke.ui.team.mate_detail;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -84,7 +85,7 @@ public class TeamMateDetailActivity extends BaseActivity
   private void configure(final Toolbar toolbarView) {
     setSupportActionBar(toolbarView);
     toolbarView.setNavigationIcon(
-        getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp));
     toolbarView.setNavigationOnClickListener(v -> onBackPressed());
   }
 
