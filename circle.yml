@@ -10,7 +10,7 @@ machine:
 dependencies:
   pre:
     # Install the android packages
-    - echo y | android update sdk --no-ui --all --filter "extra-google-market_licensing,extra-google-play_billing"
+    - echo y | android update sdk --no-ui --all --filter "tools,android-25,build-tools-25,platform-tools,extra-google-m2repository,extra-android-m2repository,extra-android-support,extra-google-google_play_services"
     #  [HINT] Almost packages are pre installed: https://circleci.com/docs/build-image-precise/#android
   post:
     # Create the android emulator
