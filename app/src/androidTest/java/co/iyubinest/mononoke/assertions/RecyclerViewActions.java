@@ -1,5 +1,4 @@
 package co.iyubinest.mononoke.assertions;
-
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.action.ViewActions;
@@ -30,7 +29,10 @@ public class RecyclerViewActions {
       public void perform(UiController uiController, View view) {
         RecyclerView recyclerView = (RecyclerView) view;
         RecyclerView.LayoutManager layout = recyclerView.getLayoutManager();
-        click.perform(uiController, layout.findViewByPosition(position));
+        click.perform(
+          uiController,
+          layout.findViewByPosition(position)
+        );
       }
     };
   }
@@ -39,12 +41,15 @@ public class RecyclerViewActions {
     return new ViewAction() {
       @Override
       public Matcher<View> getConstraints() {
-        return allOf(isAssignableFrom(RecyclerView.class), isDisplayed());
+        return allOf(
+          isAssignableFrom(RecyclerView.class),
+          isDisplayed()
+        );
       }
 
       @Override
       public String getDescription() {
-        return "scroll RecyclerView to position: " + position;
+        return "Scroll RecyclerView to position: " + position;
       }
 
       @Override

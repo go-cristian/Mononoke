@@ -1,10 +1,7 @@
 package co.iyubinest.mononoke.cache;
-
-import android.util.Log;
 import io.reactivex.Flowable;
 
 public class MemoryCache<T> implements Cache<T> {
-
   private T response;
 
   @Override
@@ -20,7 +17,6 @@ public class MemoryCache<T> implements Cache<T> {
 
   @Override
   public void save(final T response) {
-    Log.v("Cache", response.toString());
     this.response = response;
   }
 }

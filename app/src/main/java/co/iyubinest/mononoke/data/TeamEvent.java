@@ -1,9 +1,7 @@
 package co.iyubinest.mononoke.data;
-
 import java.util.List;
 
 public abstract class TeamEvent {
-
   public static final class All extends TeamEvent {
     private final List<User> users;
 
@@ -57,18 +55,17 @@ public abstract class TeamEvent {
       return new New(user);
     }
 
+    public User user() {
+      return user;
+    }
+
     @Override
     public String toString() {
       return "Event New";
     }
-
-    public User user() {
-      return user;
-    }
   }
 
   public static final class None extends TeamEvent {
-
     private final String message;
 
     private None(String message) {

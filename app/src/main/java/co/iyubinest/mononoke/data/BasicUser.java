@@ -1,10 +1,8 @@
 package co.iyubinest.mononoke.data;
-
 import android.os.Parcel;
 import java.util.List;
 
 public class BasicUser implements User {
-
   public static final Creator<BasicUser> CREATOR = new Creator<BasicUser>() {
     @Override
     public BasicUser createFromParcel(Parcel source) {
@@ -16,7 +14,6 @@ public class BasicUser implements User {
       return new BasicUser[size];
     }
   };
-
   private final String name;
   private final String avatar;
   private final String github;
@@ -26,9 +23,14 @@ public class BasicUser implements User {
   private final List<String> languages;
   private final List<String> tags;
 
-  private BasicUser(String name, String avatar, String github, String role,
-      String location, String status, List<String> languages,
-      List<String> tags) {
+  private BasicUser(String name,
+                    String avatar,
+                    String github,
+                    String role,
+                    String location,
+                    String status,
+                    List<String> languages,
+                    List<String> tags) {
     this.name = name;
     this.avatar = avatar;
     this.github = github;
@@ -50,11 +52,28 @@ public class BasicUser implements User {
     this.tags = in.createStringArrayList();
   }
 
-  public static User create(String name, String avatar, String github,
-      String role, String location, String status, List<String> languages,
-      List<String> tags) {
-    return new BasicUser(name, avatar, github, role, location, status,
-        languages, tags);
+  public static User create(String name,
+                            String avatar,
+                            String github,
+                            String role,
+                            String location,
+                            String status,
+                            List<String> languages,
+                            List<String> tags) {
+    return new BasicUser(
+      name,
+      avatar,
+      github,
+      role,
+      location,
+      status,
+      languages,
+      tags
+    );
+  }
+
+  public static UserBuilder from(User user) {
+    return new UserBuilder(user);
   }
 
   @Override
@@ -112,5 +131,45 @@ public class BasicUser implements User {
     dest.writeString(this.status);
     dest.writeStringList(this.languages);
     dest.writeStringList(this.tags);
+  }
+
+  public static class UserBuilder {
+    private String name;
+    private String avatar;
+    private String github;
+    private String role;
+    private String location;
+    private String status;
+    private List<String> languages;
+    private List<String> tags;
+
+    public UserBuilder(User user) {
+      this.name = user.name();
+      this.avatar = user.avatar();
+      this.github = user.github();
+      this.role = user.role();
+      this.location = user.location();
+      this.status = user.status();
+      this.languages = user.languages();
+      this.tags = user.tags();
+    }
+
+    public UserBuilder name(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public User build() {
+      return new BasicUser(
+        name,
+        avatar,
+        github,
+        role,
+        location,
+        status,
+        languages,
+        tags
+      );
+    }
   }
 }

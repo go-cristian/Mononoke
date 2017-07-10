@@ -1,5 +1,4 @@
 package co.iyubinest.mononoke.data.team.get;
-
 import io.reactivex.Flowable;
 import java.util.List;
 import retrofit2.http.GET;
@@ -7,7 +6,6 @@ import retrofit2.http.GET;
 public interface TeamService {
   @GET("/team")
   Flowable<List<TeamResponse>> team();
-
   class TeamResponse {
     public String name;
     public String avatar;

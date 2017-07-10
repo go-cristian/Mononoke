@@ -1,10 +1,8 @@
 package co.iyubinest.mononoke.data.team.update;
-
 import co.iyubinest.mononoke.socket.RxSocket;
 import io.reactivex.Completable;
 
 public class ComposedTeamMateInteractor implements TeamMateUpdateInteractor {
-
   private final RxSocket socket;
 
   public ComposedTeamMateInteractor(RxSocket socket) {

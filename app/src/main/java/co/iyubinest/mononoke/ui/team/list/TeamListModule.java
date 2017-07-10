@@ -1,5 +1,4 @@
 package co.iyubinest.mononoke.ui.team.list;
-
 import co.iyubinest.mononoke.data.User;
 import co.iyubinest.mononoke.data.roles.HttpRolesRepository;
 import co.iyubinest.mononoke.data.roles.RolesRepository;
@@ -17,6 +16,7 @@ import dagger.Provides;
 import io.reactivex.Flowable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import retrofit2.Retrofit;
 
 @SuppressWarnings("Convert2streamapi")
@@ -39,9 +39,14 @@ public class TeamListModule {
   }
 
   @Provides
-  TeamInteractor teamInteractor(TeamRepository team, RolesRepository roles,
-      UpdatesRepository status) {
-    return new ComposedTeamInteractor(team, roles, status);
+  TeamInteractor teamInteractor(TeamRepository teamRepository,
+                                RolesRepository rolesRepository,
+                                UpdatesRepository updatesRepository) {
+    return new ComposedTeamInteractor(
+      teamRepository,
+      rolesRepository,
+      updatesRepository
+    );
   }
 
   @Provides
@@ -50,17 +55,32 @@ public class TeamListModule {
   }
 
   @Provides
-  UpdatesRepository updatesRepository(Moshi moshi, RxSocket socket,
-      TeamRepository team, RolesRepository roles) {
-    final Flowable<List<User>> cache =
-        Flowable.zip(team.get(), roles.get(), (teamResponses, rolesMap) -> {
-          final List<User> users = new ArrayList<>(teamResponses.size());
-          for (TeamService.TeamResponse response : teamResponses) {
-            users.add(ComposedTeamInteractor
-                .userOf(response, rolesMap.get(String.valueOf(response.role))));
-          }
-          return users;
-        });
-    return new SocketUpdatesRepository(moshi, socket, cache, roles);
+  UpdatesRepository updatesRepository(Moshi moshi,
+                                      RxSocket socket,
+                                      TeamRepository teamRepository,
+                                      RolesRepository rolesRepository) {
+    final Flowable<List<User>> cache = Flowable.zip(
+      teamRepository.get(),
+      rolesRepository.get(),
+      this::usersOn
+    );
+    return new SocketUpdatesRepository(
+      moshi,
+      socket,
+      cache,
+      rolesRepository
+    );
+  }
+
+  private List<User> usersOn(List<TeamService.TeamResponse> teamResponses,
+                             Map<String, String> rolesMap) {
+    final List<User> users = new ArrayList<>(teamResponses.size());
+    for (TeamService.TeamResponse response : teamResponses) {
+      users.add(ComposedTeamInteractor.userOf(
+        response,
+        rolesMap.get(String.valueOf(response.role))
+      ));
+    }
+    return users;
   }
 }

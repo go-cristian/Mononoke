@@ -1,5 +1,4 @@
 package co.iyubinest.mononoke;
-
 import co.iyubinest.mononoke.socket.RxSocket;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -14,7 +13,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 @Module
 class AppModule {
-
   private final App app;
 
   AppModule(App app) {
@@ -27,16 +25,15 @@ class AppModule {
     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     return new OkHttpClient.Builder().addInterceptor(new StethoInterceptor())
-        .addInterceptor(interceptor).build();
+      .addInterceptor(interceptor).build();
   }
 
   @Singleton
   @Provides
   Retrofit retrofit(OkHttpClient client) {
-    return new Retrofit.Builder()
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(MoshiConverterFactory.create()).client(client)
-        .baseUrl(BuildConfig.BASE_URL).build();
+    return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .addConverterFactory(MoshiConverterFactory.create()).client(client)
+      .baseUrl(BuildConfig.BASE_URL).build();
   }
 
   @Singleton
@@ -48,6 +45,9 @@ class AppModule {
   @Singleton
   @Provides
   RxSocket rxSocket(OkHttpClient client) {
-    return new RxSocket(client, BuildConfig.BASE_WS_URL);
+    return new RxSocket(
+      client,
+      BuildConfig.BASE_WS_URL
+    );
   }
 }
