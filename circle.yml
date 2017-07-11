@@ -1,75 +1,35 @@
+general:
+  branches:
+    only:
+      - master
+  artifacts:
+    - "app/build/outputs/apk/app-release-unsigned.apk"
 machine:
   java:
     version: oraclejdk8
   environment:
-    # Java options
-    JAVA_OPTS: "-Xms512m -Xmx2048m"
-     # ADB options
-    ADB_INSTALL_TIMEOUT: 5000
-
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    ANDROID_NDK: $HOME/iroha-android/android-ndk-r11c
+    ANDROID_NDK_HOME: $ANDROID_NDK
+    PATH: $PATH:$ANDROID_NDK
+    JAVA_OPTS: "-Xms512m -Xmx1024m"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 dependencies:
-  pre:
-    # Install the android packages
-    - echo y | android update sdk --no-ui --all --filter "tools,android-25,build-tools-25,platform-tools,extra-google-m2repository,extra-android-m2repository,extra-android-support,extra-google-google_play_services"
-    #  [HINT] Almost packages are pre installed: https://circleci.com/docs/build-image-precise/#android
-
-    # Android SDK Platform 25
-    - if [ ! -d "/usr/local/android-sdk-linux/platforms/android-25" ]; then echo y | android update sdk --no-ui --all --filter "android-25"; fi
-    # Android SDK Build-tools, revision 25.0.0
-    - if [ ! -d "/usr/local/android-sdk-linux/build-tools/25.0.5" ]; then echo y | android update sdk --no-ui --all --filter "build-tools-25.0.5"; fi
-    # Android Support Repository, revision 39 / Local Maven repository for Support Libraries
-    - if [ ! -d "/usr/local/android-sdk-linux/extras/android/m2repository/com/android/support/design/25.0.0" ]; then echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"; fi
-
   cache_directories:
-    - /usr/local/android-sdk-linux/platforms/android-25
-    - /usr/local/android-sdk-linux/build-tools/25.0.0
-    - /usr/local/android-sdk-linux/extras/android/m2repository
-
-  post:
-    # Create the android emulator
-    - echo n | android create avd -n test_android_25 -f -t android-25
-    #  [HINT] Circle-CI already have built-in emulator (circleci-android22), but it's so heavy.
-    # Make a SD Card image file for the android emulator
-    - mksdcard -l e 128M sdcard.img
-
-test:
+    - android-ndk-r11c
   pre:
-    # Start the android emulator
-    - emulator -avd test_android_25 -no-audio -no-boot-anim -no-window -sdcard sdcard.img:
-        background: true
-        parallel: true
-    # Start the adb server
-    - fb-adb start-server:
-        background: true
+    - mkdir $ANDROID_HOME/licenses
+    - if [[ ! -e android-ndk-r11c ]]; then wget http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip && unzip android-ndk-r11c-linux-x86_64.zip; fi
+    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter "tools,platform-tools,android-25,extra-google-m2repository,extra-android-m2repository,extra-android-support"
+    - echo y | android update sdk --no-ui --all --filter "build-tools-25.0.2"
+    - echo 8933bad161af4178b1185d1a37fbf41ea5269c55 > $ANDROID_HOME/licenses/android-sdk-license
+    - echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_HOME/licenses/android-sdk-preview-license
+    - echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_HOME/licenses/intel-android-extra-license
+test:
   override:
-    # Generate a debug-apk
-    - ./gradlew assembleDebug -PdisablePreDex
-    #  [Hint] About -PdisablePreDex, please see http://tools.android.com/tech-docs/new-build-system/tips#TOC-Improving-Build-Server-performance.
-    # Wait for emulator to boot
-    - circle-android wait-for-boot; sleep 5
-    # Pre-install the app (debug-apk)
-    - fb-adb install app/build/outputs/apk/app-debug.apk
-    # Allow the SET_ANIMATION_SCALE permission to the app
-    - fb-adb shell pm grant "${APP_PACKAGE_NAME}" android.permission.SET_ANIMATION_SCALE
-    # Unlock the emulator screen
-    - fb-adb shell input keyevent 82
-    # Install the app (test-apk) and Run the tests
-    - ./gradlew connectedDebugAndroidTest -PdisablePreDex --stacktrace
-    # Save a screenshot to Circle-CI Artifacts
-    - fb-adb rcmd screencap -p > $CIRCLE_ARTIFACTS/screen-$(date +"%T").png
-    # Copy the generated apk files to Circle-CI Artifacts
-    - cp -r app/build/outputs/apk/ $CIRCLE_ARTIFACTS
-    # Copy the test results to Circle-CI Artifacts
-    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
-
-deployment:
-  staging:
-    branch: /.*/ # all branch
-    commands:
-      - |
-          # Make a filename of APK
-          export apk_name="build-${CIRCLE_BRANCH}-`git rev-parse --short HEAD`.apk"
-          # Upload the APK file to Google Drive
-          #  [HINT] You can get the refresh token of Google using gdrive command: https://github.com/prasmussen/gdrive
-          curl -L -o gdrive "https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA&export=download"; chmod u+x gdrive
-          ./gdrive --refresh-token "${GDRIVE_REFRESH_TOKEN}" upload --parent "${GDRIVE_DIR_ID}" --name "${apk_name}" app/build/outputs/apk/app-debug.apk
+    - ./gradlew app:test
+  post:
+      - if [ -d iroha-android/build/test-results ]; then cp -r iroha-android/build/test-results/* $CIRCLE_TEST_REPORTS; fi
+general:
+  artifacts:
+    - "app/build/outputs/apk/app-production-release.apk"
