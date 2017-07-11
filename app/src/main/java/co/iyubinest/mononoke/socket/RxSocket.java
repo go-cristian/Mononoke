@@ -22,7 +22,7 @@ public class RxSocket {
     this.url = url;
     this.receive = Flowable.create(
       this::receiver,
-      BackpressureStrategy.BUFFER
+      BackpressureStrategy.DROP
     );
   }
 
