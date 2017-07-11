@@ -27,14 +27,6 @@ dependencies:
     - echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_HOME/licenses/intel-android-extra-license
   post:
     - mksdcard -l e 128M sdcard.img
-test:
-  override:
-    - ./gradlew app:test
-  post:
-      - if [ -d iroha-android/build/test-results ]; then cp -r iroha-android/build/test-results/* $CIRCLE_TEST_REPORTS; fi
-general:
-  artifacts:
-    - "app/build/outputs/apk/app-production-release.apk"
 
 test:
   pre:
