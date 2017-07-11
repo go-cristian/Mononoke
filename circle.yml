@@ -36,7 +36,7 @@ test:
     - circle-android wait-for-boot
   override:
     # Generate a debug-apk
-    - ./gradlew assembleDebug -PdisablePreDex
+    - ./gradlew assembleDebug
     #  [Hint] About -PdisablePreDex, please see http://tools.android.com/tech-docs/new-build-system/tips#TOC-Improving-Build-Server-performance.
     # Wait for emulator to boot
     - circle-android wait-for-boot; sleep 5
@@ -47,7 +47,7 @@ test:
     # Unlock the emulator screen
     - fb-adb shell input keyevent 82
     # Install the app (test-apk) and Run the tests
-    - ./gradlew connectedDebugAndroidTest -PdisablePreDex --stacktrace
+    - ./gradlew connectedDebugAndroidTest --stacktrace
     # Save a screenshot to Circle-CI Artifacts
     - fb-adb rcmd screencap -p > $CIRCLE_ARTIFACTS/screen-$(date +"%T").png
     # Copy the generated apk files to Circle-CI Artifacts
