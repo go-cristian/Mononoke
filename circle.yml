@@ -38,13 +38,10 @@ general:
 
 test:
   pre:
-    # Start the android emulator
-    - emulator -avd circleci-android24 -no-audio -no-boot-anim -no-window -sdcard sdcard.img:
-        background: true
-        parallel: true
-    # Start the adb server
-    - fb-adb start-server:
-        background: true
+    - emulator -avd circleci-android24 -no-window:
+         background: true
+         parallel: true
+    - circle-android wait-for-boot
   override:
     # Generate a debug-apk
     - ./gradlew assembleDebug -PdisablePreDex
