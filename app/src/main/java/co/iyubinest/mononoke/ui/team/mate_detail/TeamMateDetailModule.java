@@ -14,12 +14,12 @@ public class TeamMateDetailModule {
   }
 
   @Provides
-  TeamMateDetailScreen teamMateDetailScreen() {
+  public TeamMateDetailScreen teamMateDetailScreen() {
     return activity;
   }
 
   @Provides
-  TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
+  public TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
     return new ComposedTeamMateInteractor(socket);
   }
 }

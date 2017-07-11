@@ -21,7 +21,7 @@ class AppModule {
 
   @Singleton
   @Provides
-  OkHttpClient okHttpClient() {
+  public OkHttpClient okHttpClient() {
     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     return new OkHttpClient.Builder().addInterceptor(new StethoInterceptor())
@@ -30,7 +30,7 @@ class AppModule {
 
   @Singleton
   @Provides
-  Retrofit retrofit(OkHttpClient client) {
+  public Retrofit retrofit(OkHttpClient client) {
     return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .addConverterFactory(MoshiConverterFactory.create()).client(client)
       .baseUrl(BuildConfig.BASE_URL).build();
@@ -38,13 +38,13 @@ class AppModule {
 
   @Singleton
   @Provides
-  Moshi moshi() {
+  public Moshi moshi() {
     return new Moshi.Builder().build();
   }
 
   @Singleton
   @Provides
-  RxSocket rxSocket(OkHttpClient client) {
+  public RxSocket rxSocket(OkHttpClient client) {
     return new RxSocket(
       client,
       BuildConfig.BASE_WS_URL
