@@ -1,68 +1,18 @@
-general:
-  branches:
-    only:
-      - master
-  artifacts:
-    - "app/build/outputs/apk/app-release-unsigned.apk"
-machine:
-  java:
-    version: oraclejdk8
-  environment:
-    ANDROID_HOME: /usr/local/android-sdk-linux
-    ANDROID_NDK: $HOME/iroha-android/android-ndk-r11c
-    ANDROID_NDK_HOME: $ANDROID_NDK
-    PATH: $PATH:$ANDROID_NDK
-    JAVA_OPTS: "-Xms512m -Xmx1024m"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+
 dependencies:
-  cache_directories:
-    - android-ndk-r11c
   pre:
-    - mkdir $ANDROID_HOME/licenses
-    - if [[ ! -e android-ndk-r11c ]]; then wget http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip && unzip android-ndk-r11c-linux-x86_64.zip; fi
-    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter "tools,platform-tools,android-25,extra-google-m2repository,extra-android-m2repository,extra-android-support"
-    - echo y | android update sdk --no-ui --all --filter "build-tools-25.0.2"
-    - echo 8933bad161af4178b1185d1a37fbf41ea5269c55 > $ANDROID_HOME/licenses/android-sdk-license
-    - echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_HOME/licenses/android-sdk-preview-license
-    - echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_HOME/licenses/intel-android-extra-license
+    - sudo apt-get update; sudo apt-get install gcc python-setuptools
+    - sudo pip install -U crcmod
   post:
-    - mksdcard -l e 128M sdcard.img
-
+    - ./gradlew :app:assembleDebug -PdisablePreDex
+    - ./gradlew :app:assembleDebugTest -PdisablePreDex
+    - echo $GCLOUD_SERVICE_KEY | base64 --decode > ${HOME}/client-secret.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud config set project circle-ctl-test
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components install beta
+    - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account $ACCOUNT --key-file ${HOME}/client-secret.json
 test:
-  pre:
-    - emulator -avd circleci-android24 -no-window:
-         background: true
-         parallel: true
-    - circle-android wait-for-boot
   override:
-    # Generate a debug-apk
-    - ./gradlew assembleDebug
-    #  [Hint] About -PdisablePreDex, please see http://tools.android.com/tech-docs/new-build-system/tips#TOC-Improving-Build-Server-performance.
-    # Wait for emulator to boot
-    - circle-android wait-for-boot; sleep 5
-    # Pre-install the app (debug-apk)
-    - fb-adb install app/build/outputs/apk/app-debug.apk
-    # Allow the SET_ANIMATION_SCALE permission to the app
-    - fb-adb shell pm grant "${APP_PACKAGE_NAME}" android.permission.SET_ANIMATION_SCALE
-    # Unlock the emulator screen
-    - fb-adb shell input keyevent 82
-    # Install the app (test-apk) and Run the tests
-    - ./gradlew connectedDebugAndroidTest --stacktrace
-    # Save a screenshot to Circle-CI Artifacts
-    - fb-adb rcmd screencap -p > $CIRCLE_ARTIFACTS/screen-$(date +"%T").png
-    # Copy the generated apk files to Circle-CI Artifacts
-    - cp -r app/build/outputs/apk/ $CIRCLE_ARTIFACTS
-    # Copy the test results to Circle-CI Artifacts
-    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
-
-deployment:
-  staging:
-    branch: /.*/ # all branch
-    commands:
-      - |
-          # Make a filename of APK
-          export apk_name="build-${CIRCLE_BRANCH}-`git rev-parse --short HEAD`.apk"
-          # Upload the APK file to Google Drive
-          #  [HINT] You can get the refresh token of Google using gdrive command: https://github.com/prasmussen/gdrive
-          curl -L -o gdrive "https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA&export=download"; chmod u+x gdrive
-          ./gdrive --refresh
+    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud beta test android run --app app/build/outputs/apk/app-debug.apk --test app/build/outputs/apk/app-debug-test-unaligned.apk --results-bucket cloud-test-circle-ctl-test
+  post:
+    - sudo /opt/google-cloud-sdk/bin/gsutil -m cp -r `sudo /opt/google-cloud-sdk/bin/gsutil ls gs://cloud-test-circle-ctl-test | tail -1` $CIRCLE_ARTIFACTS/
