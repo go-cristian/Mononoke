@@ -30,7 +30,7 @@ dependencies:
   post:
     - mksdcard -l e 128M sdcard.img
     - ./gradlew :app:assembleDebug -PdisablePreDex
-    - ./gradlew :app:assembleDebugTest -PdisablePreDex
+    - ./gradlew :app:assembleAndroidTest -PdisablePreDex
     - echo $GCLOUD_SERVICE_KEY | base64 --decode > ${HOME}/client-secret.json
     - sudo /opt/google-cloud-sdk/bin/gcloud config set project circle-ctl-test
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
@@ -39,7 +39,7 @@ dependencies:
 
 test:
   override:
-    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud beta test android run --app app/build/outputs/apk/app-debug.apk --test app/build/outputs/apk/app-debug-test-unaligned.apk --results-bucket cloud-test-circle-ctl-test
+    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud beta test android run --app app/build/outputs/apk/app-debug.apk --test app/build/outputs/apk/app-debug-androidTest.apk --results-bucket cloud-test-circle-ctl-test
   post:
     - sudo /opt/google-cloud-sdk/bin/gsutil -m cp -r `sudo /opt/google-cloud-sdk/bin/gsutil ls gs://cloud-test-circle-ctl-test | tail -1` $CIRCLE_ARTIFACTS/
 
