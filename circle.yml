@@ -39,9 +39,9 @@ dependencies:
 
 test:
   override:
-    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud beta test android run --app app/build/outputs/apk/app-debug.apk --test app/build/outputs/apk/app-debug-androidTest.apk --results-bucket cloud-test-mononoke-31447
+    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud beta test android run --app app/build/outputs/apk/app-debug.apk --test app/build/outputs/apk/app-debug-androidTest.apk --results-bucket gs://mononoke-31447.appspot.com
   post:
-    - sudo /opt/google-cloud-sdk/bin/gsutil -m cp -r `sudo /opt/google-cloud-sdk/bin/gsutil ls gs://cloud-test-mononoke-31447 | tail -1` $CIRCLE_ARTIFACTS/
+    - sudo /opt/google-cloud-sdk/bin/gsutil -m cp -r `sudo /opt/google-cloud-sdk/bin/gsutil ls gs://mononoke-31447.appspot.com | tail -1` $CIRCLE_ARTIFACTS/
 
 deployment:
   staging:
