@@ -159,6 +159,11 @@ public class BasicUser implements User {
       return this;
     }
 
+    public UserBuilder github(String github) {
+      this.github = github;
+      return this;
+    }
+
     public User build() {
       return new BasicUser(
         name,

@@ -44,11 +44,21 @@ public class TeamListActivityShould extends BaseTest {
     "github2",
     "Developer",
     "Medellin",
-    "Ready",
+    "Not available",
     Collections.singletonList("Spanish"),
     Collections.singletonList("Java")
   );
-  private static final TeamEvent UPDATE_USER_EVENT = TeamEvent.Status.with(USER);
+  private static final User READY_USER = BasicUser.create(
+      "Cristian Gomez",
+      "https://scontent.feoh3-1.fna.fbcdn.net/v/t1.0-9/15826806_10210753267884430_5673865899618602352_n.jpg?oh=8c14a9a582f32f8ea39ef5a5cd745c67&oe=59D3AF60",
+      "github 2",
+      "Developer",
+      "Medellin",
+      "Ready",
+      Collections.singletonList("Spanish"),
+      Collections.singletonList("Java")
+  );
+  private static final TeamEvent UPDATE_USER_EVENT = TeamEvent.Status.with(READY_USER);
 
   static {
     prepareTestUsers();
@@ -67,7 +77,11 @@ public class TeamListActivityShould extends BaseTest {
 
   private static void prepareTestUsers() {
     for (int i = 0; i < TOTAL; i++) {
-      User user = BasicUser.from(USER).name("Test name " + i).build();
+      User user = BasicUser
+          .from(USER)
+          .name("Test name " + i)
+          .github("github " + i)
+          .build();
       USERS.add(user);
     }
   }
@@ -138,7 +152,7 @@ public class TeamListActivityShould extends BaseTest {
     onViewId(R.id.team_list).check(item(
       2,
       R.id.team_list_item_status,
-      "ready"
+      "Ready"
     ));
   }
 }

@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 @Module
-class AppModule {
+public class AppModule {
   private final App app;
 
   AppModule(App app) {
