@@ -48,9 +48,5 @@ deployment:
     branch: /.*/ # all branch
     commands:
       - |
-          # Make a filename of APK
-          export apk_name="app/build/outputs/apk/app-debug.apk"
-          # Upload the APK file to Google Drive
-          #  [HINT] You can get the refresh token of Google using gdrive command: https://github.com/prasmussen/gdrive
           curl -L -o gdrive "https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA&export=download"; chmod u+x gdrive
-          ./gdrive --refresh
+          ./gdrive --refresh-token "refresh_token_value" upload --parent "parent_id" app/build/outputs/apk/app-debug.apk
