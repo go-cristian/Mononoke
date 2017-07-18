@@ -49,5 +49,5 @@ deployment:
     branch: /.*/ # all branch
     commands:
       - |
-          curl -L -o gdrive "https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA&export=download"; chmod u+x gdrive
+          curl -L -o gdrive "https://docs.google.com/uc?id=0B3X9GlR6EmbnLV92dHBpTkFhTEU&export=download"; chmod u+x gdrive
           ./gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" upload --parent "parent_id" app/build/outputs/apk/app-debug.apk
