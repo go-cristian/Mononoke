@@ -39,7 +39,14 @@ dependencies:
 
 test:
   override:
-    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud firebase test android run --app app/build/outputs/apk/app-debug.apk --test app/build/outputs/apk/app-debug-androidTest.apk
+    - echo "y" | sudo /opt/google-cloud-sdk/bin/gcloud firebase test android run \
+            --type instrumentation \
+            --app app/build/outputs/apk/app-debug.apk \
+            --test app/build/outputs/apk/app-debug-androidTest.apk \
+            --device-ids Nexus6,Nexus7 \
+            --os-version-ids 19,20,21 \
+            --orientations portrait,landscape
+
   post:
     - sudo /opt/google-cloud-sdk/bin/gsutil -m cp -r `sudo /opt/google-cloud-sdk/bin/gsutil ls gs://mononoke-31447.appspot.com | tail -1` $CIRCLE_ARTIFACTS/
 
@@ -49,4 +56,4 @@ deployment:
     commands:
       - |
           curl -L -o gdrive "https://docs.google.com/uc?id=0B3X9GlR6EmbnQ0FtZmJJUXEyRTA&export=download"; chmod u+x gdrive
-          ./gdrive --refresh-token "refresh_token_value" upload --parent "parent_id" app/build/outputs/apk/app-debug.apk
+          ./gdrive --refresh-token "$GDRIVE_REFRESH_TOKEN" upload --parent "parent_id" app/build/outputs/apk/app-debug.apk
