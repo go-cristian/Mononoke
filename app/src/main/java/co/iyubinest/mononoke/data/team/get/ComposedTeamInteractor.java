@@ -1,5 +1,4 @@
 package co.iyubinest.mononoke.data.team.get;
-
 import android.util.Log;
 import co.iyubinest.mononoke.data.BasicUser;
 import co.iyubinest.mononoke.data.TeamEvent;
@@ -12,8 +11,9 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Singleton;
 
-@Singleton
-public class ComposedTeamInteractor implements TeamInteractor {
+@SuppressWarnings("Convert2streamapi") @Singleton public class ComposedTeamInteractor
+    implements TeamInteractor {
+
   private final TeamRepository team;
   private final RolesRepository roles;
   private final UpdatesRepository status;
@@ -25,22 +25,17 @@ public class ComposedTeamInteractor implements TeamInteractor {
     this.status = status;
   }
 
-  public static User userOf(final TeamService.TeamResponse teamResponse,
-      final String role) {
-    return BasicUser
-        .create(teamResponse.name, teamResponse.avatar, teamResponse.github,
-            role, teamResponse.location, "", teamResponse.languages,
-            teamResponse.tags);
+  public static User userOf(final TeamService.TeamResponse teamResponse, final String role) {
+    return BasicUser.create(teamResponse.name, teamResponse.avatar, teamResponse.github, role,
+        teamResponse.location, "", teamResponse.languages, teamResponse.tags);
   }
 
-  @Override
-  public Flowable<TeamEvent> users() {
-    final Flowable<TeamEvent> allEvents =
-        Flowable.zip(team.get(), roles.get(), this::zip);
+  @Override public Flowable<TeamEvent> users() {
+    final Flowable<TeamEvent> allEvents = Flowable.zip(team.get(), roles.get(), this::zip);
     final Flowable<TeamEvent> statusEvents = status.get();
     return Flowable.concat(allEvents, statusEvents)
         .doOnNext(teamEvent -> Log.v("New Update", teamEvent.toString()))
-        .onErrorReturn(throwable -> new TeamEvent.None());
+        .onErrorReturn(throwable -> TeamEvent.None.with(throwable.getMessage()));
   }
 
   private TeamEvent zip(final List<TeamService.TeamResponse> team,

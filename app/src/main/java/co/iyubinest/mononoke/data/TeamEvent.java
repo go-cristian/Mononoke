@@ -1,10 +1,10 @@
 package co.iyubinest.mononoke.data;
-
 import java.util.List;
 
 public abstract class TeamEvent {
 
   public static final class All extends TeamEvent {
+
     private final List<User> users;
 
     private All(List<User> users) {
@@ -19,13 +19,13 @@ public abstract class TeamEvent {
       return users;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
       return "Event with " + users.size() + " users.";
     }
   }
 
   public static final class Status extends TeamEvent {
+
     private final User user;
 
     private Status(User user) {
@@ -40,13 +40,13 @@ public abstract class TeamEvent {
       return user;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
       return "Event with status " + user.status() + " for " + user.github();
     }
   }
 
   public static final class New extends TeamEvent {
+
     private final User user;
 
     private New(User user) {
@@ -57,20 +57,33 @@ public abstract class TeamEvent {
       return new New(user);
     }
 
-    @Override
-    public String toString() {
-      return "Event New";
-    }
-
     public User user() {
       return user;
+    }
+
+    @Override public String toString() {
+      return "Event New";
     }
   }
 
   public static final class None extends TeamEvent {
-    @Override
-    public String toString() {
-      return "Event None";
+
+    private final String message;
+
+    private None(String message) {
+      this.message = message;
+    }
+
+    public static None with(String message) {
+      return new None(message);
+    }
+
+    public String message() {
+      return message;
+    }
+
+    @Override public String toString() {
+      return "Event None " + message;
     }
   }
 }

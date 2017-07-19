@@ -1,6 +1,6 @@
 package co.iyubinest.mononoke.ui.team.list;
-
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,11 +32,12 @@ class TeamListWidget extends RecyclerView {
 
   public TeamListWidget(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    setAdapter(adapter);
-    int spanCount =
-        getContext().getResources().getInteger(R.integer.team_list_columns);
+    TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TeamListWidget, 0, 0);
+    int spanCount = typedArray.getInt(R.styleable.TeamListWidget_columns, 1);
     setLayoutManager(new GridLayoutManager(getContext(), spanCount));
+    typedArray.recycle();
     setBackgroundColor(Color.TRANSPARENT);
+    setAdapter(adapter);
   }
 
   public void show(List<User> users) {
@@ -55,35 +56,33 @@ class TeamListWidget extends RecyclerView {
     adapter.update(user);
   }
 
+  public ArrayList<User> users() {
+    return new ArrayList<>(adapter.users);
+  }
+
   interface OnUserSelected {
 
     void onMateSelected(final User mate);
   }
 
-  private static class TeamListAdapter
-      extends RecyclerView.Adapter<TeamListHolder> {
+  private static class TeamListAdapter extends RecyclerView.Adapter<TeamListHolder> {
 
     private final List<User> users = new ArrayList<>();
-
     private OnUserSelected listener;
 
-    @Override
-    public TeamListHolder onCreateViewHolder(final ViewGroup parent,
-        int viewType) {
-      return new TeamListHolder(LayoutInflater.from(parent.getContext())
-          .inflate(R.layout.team_list_item, parent, false));
+    @Override public TeamListHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+      return new TeamListHolder(
+          LayoutInflater.from(parent.getContext()).inflate(R.layout.team_list_item, parent, false));
     }
 
-    @Override
-    public void onBindViewHolder(final TeamListHolder holder, int position) {
+    @Override public void onBindViewHolder(final TeamListHolder holder, int position) {
       holder.mate(users.get(position));
       holder.onPositionSelected(pos -> {
         if (listener != null) listener.onMateSelected(users.get(pos));
       });
     }
 
-    @Override
-    public int getItemCount() {
+    @Override public int getItemCount() {
       return users.size();
     }
 
@@ -128,7 +127,6 @@ class TeamListWidget extends RecyclerView {
     @BindView(R.id.team_list_item_languages) TextView languagesView;
     @BindView(R.id.team_list_item_tags) TextView tagsView;
     @BindView(R.id.team_list_item_status) TextView statusView;
-
     private OnPositionSelected listener;
 
     TeamListHolder(View itemView) {
@@ -151,8 +149,7 @@ class TeamListWidget extends RecyclerView {
       languagesView.setText(user.languages().toString());
       tagsView.setText(user.tags().toString());
       if (!TextUtils.isEmpty(user.status())) statusView.setText(user.status());
-      LoadImage.fromResource(locationView, "flag_" + user.location(),
-          R.drawable.flag__unknown);
+      LoadImage.fromResource(locationView, "flag_" + user.location(), R.drawable.flag__unknown);
     }
 
     interface OnPositionSelected {

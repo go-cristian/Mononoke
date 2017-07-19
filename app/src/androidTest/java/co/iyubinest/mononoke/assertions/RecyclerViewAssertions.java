@@ -1,14 +1,15 @@
 package co.iyubinest.mononoke.assertions;
-
 import android.support.annotation.IdRes;
 import android.support.test.espresso.ViewAssertion;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RecyclerViewAssertions {
+
   public static ViewAssertion count(int count) {
     return (view, noViewFoundException) -> {
       if (noViewFoundException != null) {
@@ -20,19 +21,15 @@ public class RecyclerViewAssertions {
     };
   }
 
-  public static ViewAssertion item(int position, @IdRes int layoutId,
-      String string) {
+  public static ViewAssertion item(int position, @IdRes int layoutId, String string) {
     return (view, noViewFoundException) -> {
       if (noViewFoundException != null) {
         throw noViewFoundException;
       }
       RecyclerView recyclerView = (RecyclerView) view;
-      RecyclerView.LayoutManager layoutManager =
-          recyclerView.getLayoutManager();
-      layoutManager.findViewByPosition(position);
-      TextView textView =
-          (TextView) (layoutManager.findViewByPosition(position))
-              .findViewById(layoutId);
+      RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+      View viewByPosition = layoutManager.findViewByPosition(position);
+      TextView textView = (TextView) viewByPosition.findViewById(layoutId);
       assertThat(textView.getText().toString(), is(string));
     };
   }

@@ -1,5 +1,4 @@
 package co.iyubinest.mononoke.data.roles;
-
 import co.iyubinest.mononoke.cache.Cache;
 import co.iyubinest.mononoke.cache.MemoryCache;
 import co.iyubinest.mononoke.common.RxUtils;
@@ -17,10 +16,9 @@ public class HttpRolesRepository implements RolesRepository {
     cache = new MemoryCache<>();
   }
 
-  @Override
-  public Flowable<Map<String, String>> get() {
-    return Flowable
-        .concat(cache.get(), service.roles().retryWhen(RxUtils.incremental()))
-        .take(1).doOnNext(cache::save);
+  @Override public Flowable<Map<String, String>> get() {
+    return Flowable.concat(cache.get(), service.roles().retryWhen(RxUtils.incremental()))
+        .take(1)
+        .doOnNext(cache::save);
   }
 }
