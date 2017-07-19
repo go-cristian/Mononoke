@@ -3,5 +3,6 @@ import co.iyubinest.mononoke.data.TeamEvent;
 import io.reactivex.Flowable;
 
 public interface UpdatesRepository {
+
   Flowable<TeamEvent> get();
 }

@@ -4,9 +4,10 @@ import java.util.List;
 import retrofit2.http.GET;
 
 public interface TeamService {
-  @GET("/team")
-  Flowable<List<TeamResponse>> team();
+
+  @GET("/team") Flowable<List<TeamResponse>> team();
   class TeamResponse {
+
     public String name;
     public String avatar;
     public String github;

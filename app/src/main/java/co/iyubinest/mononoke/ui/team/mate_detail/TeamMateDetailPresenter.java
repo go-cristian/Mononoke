@@ -5,24 +5,19 @@ import io.reactivex.schedulers.Schedulers;
 import javax.inject.Inject;
 
 class TeamMateDetailPresenter {
+
   private final TeamMateDetailScreen view;
   private final TeamMateUpdateInteractor interactor;
 
-  @Inject
-  TeamMateDetailPresenter(TeamMateDetailScreen view, TeamMateUpdateInteractor interactor) {
+  @Inject TeamMateDetailPresenter(TeamMateDetailScreen view, TeamMateUpdateInteractor interactor) {
     this.view = view;
     this.interactor = interactor;
   }
 
   public void update() {
-    interactor.send(view.status()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
-                                                                            .mainThread())
-      .subscribe(
-        () -> view.updateList(
-          view.status(),
-          view.user()
-        ),
-        view::error
-      );
+    interactor.send(view.status())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(() -> view.updateList(view.status(), view.user()), view::error);
   }
 }

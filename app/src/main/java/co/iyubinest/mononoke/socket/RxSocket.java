@@ -13,6 +13,7 @@ import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 
 public class RxSocket {
+
   private final OkHttpClient client;
   private final String url;
   private final Flowable<String> receive;
@@ -20,42 +21,28 @@ public class RxSocket {
   public RxSocket(OkHttpClient client, String url) {
     this.client = client;
     this.url = url;
-    this.receive = Flowable.create(
-      this::receiver,
-      BackpressureStrategy.DROP
-    );
+    this.receive = Flowable.create(this::receiver, BackpressureStrategy.DROP);
   }
 
   private void receiver(final FlowableEmitter<String> emitter) {
-    final WebSocket socket = client.newWebSocket(
-      new Request.Builder().url(url).build(),
-      new WebSocketListener() {
-        @Override
-        public void onMessage(final WebSocket webSocket, final String text) {
-          if (text != null) {
-            Log.v(
-              "WebSocket",
-              text
-            );
-            emitter.onNext(text);
+    final WebSocket socket =
+        client.newWebSocket(new Request.Builder().url(url).build(), new WebSocketListener() {
+          @Override public void onMessage(final WebSocket webSocket, final String text) {
+            if (text != null) {
+              Log.v("WebSocket", text);
+              emitter.onNext(text);
+            }
           }
-        }
-      }
-    );
+        });
     emitter.setDisposable(new Disposable() {
       private boolean disposed;
 
-      @Override
-      public void dispose() {
-        socket.close(
-          1000,
-          "Closed"
-        );
+      @Override public void dispose() {
+        socket.close(1000, "Closed");
         disposed = true;
       }
 
-      @Override
-      public boolean isDisposed() {
+      @Override public boolean isDisposed() {
         return disposed;
       }
     });
@@ -66,51 +53,33 @@ public class RxSocket {
   }
 
   public Completable send(final String message) {
-    return Completable.create(emitter -> send(
-      message,
-      emitter
-    ));
+    return Completable.create(emitter -> send(message, emitter));
   }
 
   private void send(final String message, final CompletableEmitter emitter) {
-    final WebSocket socket = client.newWebSocket(
-      new Request.Builder().url(url).build(),
-      new WebSocketListener() {
-        @Override
-        public void onMessage(final WebSocket webSocket, final String text) {
-          Log.v(
-            "WebSocket",
-            text
-          );
-          if (text.contains(message)) {
-            emitter.onComplete();
+    final WebSocket socket =
+        client.newWebSocket(new Request.Builder().url(url).build(), new WebSocketListener() {
+          @Override public void onMessage(final WebSocket webSocket, final String text) {
+            Log.v("WebSocket", text);
+            if (text.contains(message)) {
+              emitter.onComplete();
+            }
           }
-        }
 
-        @Override
-        public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-          Log.e(
-            "WebSocket",
-            t.getMessage()
-          );
-          emitter.onError(t);
-        }
-      }
-    );
+          @Override public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+            Log.e("WebSocket", t.getMessage());
+            emitter.onError(t);
+          }
+        });
     emitter.setDisposable(new Disposable() {
       private boolean disposed;
 
-      @Override
-      public void dispose() {
-        socket.close(
-          1000,
-          "Closed"
-        );
+      @Override public void dispose() {
+        socket.close(1000, "Closed");
         disposed = true;
       }
 
-      @Override
-      public boolean isDisposed() {
+      @Override public boolean isDisposed() {
         return disposed;
       }
     });

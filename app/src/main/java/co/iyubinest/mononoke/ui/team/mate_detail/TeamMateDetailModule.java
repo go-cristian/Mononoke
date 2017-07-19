@@ -5,21 +5,19 @@ import co.iyubinest.mononoke.socket.RxSocket;
 import dagger.Module;
 import dagger.Provides;
 
-@Module
-public class TeamMateDetailModule {
+@Module public class TeamMateDetailModule {
+
   private final TeamMateDetailActivity activity;
 
   TeamMateDetailModule(TeamMateDetailActivity activity) {
     this.activity = activity;
   }
 
-  @Provides
-  public TeamMateDetailScreen teamMateDetailScreen() {
+  @Provides public TeamMateDetailScreen teamMateDetailScreen() {
     return activity;
   }
 
-  @Provides
-  public TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
+  @Provides public TeamMateUpdateInteractor teamMateUpdateInteractor(RxSocket socket) {
     return new ComposedTeamMateInteractor(socket);
   }
 }

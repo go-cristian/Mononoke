@@ -4,12 +4,11 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 public class LoadImage {
+
   public static void fromResource(ImageView view, String resourceName, int defaultResource) {
-    int id = view.getContext().getResources().getIdentifier(
-      resourceName,
-      "drawable",
-      view.getContext().getPackageName()
-    );
+    int id = view.getContext()
+        .getResources()
+        .getIdentifier(resourceName, "drawable", view.getContext().getPackageName());
     if (id < 0) id = defaultResource;
     view.setImageResource(id);
   }

@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RecyclerViewAssertions {
+
   public static ViewAssertion count(int count) {
     return (view, noViewFoundException) -> {
       if (noViewFoundException != null) {
@@ -16,10 +17,7 @@ public class RecyclerViewAssertions {
       }
       RecyclerView recyclerView = (RecyclerView) view;
       RecyclerView.Adapter adapter = recyclerView.getAdapter();
-      assertThat(
-        adapter.getItemCount(),
-        is(count)
-      );
+      assertThat(adapter.getItemCount(), is(count));
     };
   }
 
@@ -32,10 +30,7 @@ public class RecyclerViewAssertions {
       RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
       View viewByPosition = layoutManager.findViewByPosition(position);
       TextView textView = (TextView) viewByPosition.findViewById(layoutId);
-      assertThat(
-        textView.getText().toString(),
-        is(string)
-      );
+      assertThat(textView.getText().toString(), is(string));
     };
   }
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import retrofit2.Retrofit;
 
 public class HttpRolesRepository implements RolesRepository {
+
   private final RolesService service;
   private final Cache<Map<String, String>> cache;
 
@@ -15,11 +16,9 @@ public class HttpRolesRepository implements RolesRepository {
     cache = new MemoryCache<>();
   }
 
-  @Override
-  public Flowable<Map<String, String>> get() {
-    return Flowable.concat(
-      cache.get(),
-      service.roles().retryWhen(RxUtils.incremental())
-    ).take(1).doOnNext(cache::save);
+  @Override public Flowable<Map<String, String>> get() {
+    return Flowable.concat(cache.get(), service.roles().retryWhen(RxUtils.incremental()))
+        .take(1)
+        .doOnNext(cache::save);
   }
 }

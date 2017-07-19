@@ -2,10 +2,10 @@ package co.iyubinest.mononoke.cache;
 import io.reactivex.Flowable;
 
 public class MemoryCache<T> implements Cache<T> {
+
   private T response;
 
-  @Override
-  public Flowable<T> get() {
+  @Override public Flowable<T> get() {
     return Flowable.defer(() -> {
       if (response == null) {
         return Flowable.empty();
@@ -15,8 +15,7 @@ public class MemoryCache<T> implements Cache<T> {
     });
   }
 
-  @Override
-  public void save(final T response) {
+  @Override public void save(final T response) {
     this.response = response;
   }
 }

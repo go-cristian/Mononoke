@@ -3,14 +3,13 @@ import android.os.Parcel;
 import java.util.List;
 
 public class BasicUser implements User {
+
   public static final Creator<BasicUser> CREATOR = new Creator<BasicUser>() {
-    @Override
-    public BasicUser createFromParcel(Parcel source) {
+    @Override public BasicUser createFromParcel(Parcel source) {
       return new BasicUser(source);
     }
 
-    @Override
-    public BasicUser[] newArray(int size) {
+    @Override public BasicUser[] newArray(int size) {
       return new BasicUser[size];
     }
   };
@@ -23,14 +22,8 @@ public class BasicUser implements User {
   private final List<String> languages;
   private final List<String> tags;
 
-  private BasicUser(String name,
-                    String avatar,
-                    String github,
-                    String role,
-                    String location,
-                    String status,
-                    List<String> languages,
-                    List<String> tags) {
+  private BasicUser(String name, String avatar, String github, String role, String location,
+      String status, List<String> languages, List<String> tags) {
     this.name = name;
     this.avatar = avatar;
     this.github = github;
@@ -52,77 +45,52 @@ public class BasicUser implements User {
     this.tags = in.createStringArrayList();
   }
 
-  public static User create(String name,
-                            String avatar,
-                            String github,
-                            String role,
-                            String location,
-                            String status,
-                            List<String> languages,
-                            List<String> tags) {
-    return new BasicUser(
-      name,
-      avatar,
-      github,
-      role,
-      location,
-      status,
-      languages,
-      tags
-    );
+  public static User create(String name, String avatar, String github, String role, String location,
+      String status, List<String> languages, List<String> tags) {
+    return new BasicUser(name, avatar, github, role, location, status, languages, tags);
   }
 
   public static UserBuilder from(User user) {
     return new UserBuilder(user);
   }
 
-  @Override
-  public String name() {
+  @Override public String name() {
     return name;
   }
 
-  @Override
-  public String avatar() {
+  @Override public String avatar() {
     return avatar;
   }
 
-  @Override
-  public String github() {
+  @Override public String github() {
     return github;
   }
 
-  @Override
-  public String role() {
+  @Override public String role() {
     return role;
   }
 
-  @Override
-  public String location() {
+  @Override public String location() {
     return location;
   }
 
-  @Override
-  public String status() {
+  @Override public String status() {
     return status;
   }
 
-  @Override
-  public List<String> languages() {
+  @Override public List<String> languages() {
     return languages;
   }
 
-  @Override
-  public List<String> tags() {
+  @Override public List<String> tags() {
     return tags;
   }
 
-  @Override
-  public int describeContents() {
+  @Override public int describeContents() {
     return 0;
   }
 
-  @Override
-  public void writeToParcel(Parcel dest, int flags) {
+  @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(this.name);
     dest.writeString(this.avatar);
     dest.writeString(this.github);
@@ -134,6 +102,7 @@ public class BasicUser implements User {
   }
 
   public static class UserBuilder {
+
     private String name;
     private String avatar;
     private String github;
@@ -165,16 +134,7 @@ public class BasicUser implements User {
     }
 
     public User build() {
-      return new BasicUser(
-        name,
-        avatar,
-        github,
-        role,
-        location,
-        status,
-        languages,
-        tags
-      );
+      return new BasicUser(name, avatar, github, role, location, status, languages, tags);
     }
   }
 }

@@ -9,6 +9,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class BaseTest {
+
   protected static ViewInteraction onViewId(@IdRes int idRes) {
     return onView(withId(idRes));
   }
@@ -22,7 +23,8 @@ public class BaseTest {
   }
 
   protected static App app() {
-    return (App) InstrumentationRegistry.getInstrumentation().getTargetContext()
-      .getApplicationContext();
+    return (App) InstrumentationRegistry.getInstrumentation()
+        .getTargetContext()
+        .getApplicationContext();
   }
 }

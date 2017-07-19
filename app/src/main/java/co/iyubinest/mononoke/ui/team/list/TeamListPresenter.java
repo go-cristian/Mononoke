@@ -7,22 +7,21 @@ import io.reactivex.schedulers.Schedulers;
 import javax.inject.Inject;
 
 public class TeamListPresenter {
+
   private final CompositeDisposable disposable = new CompositeDisposable();
   private final TeamListScreen view;
   private final TeamInteractor interactor;
 
-  @Inject
-  TeamListPresenter(TeamListScreen view, TeamInteractor interactor) {
+  @Inject TeamListPresenter(TeamListScreen view, TeamInteractor interactor) {
     this.view = view;
     this.interactor = interactor;
   }
 
   void requestAll() {
-    disposable.add(interactor.users().subscribeOn(Schedulers.io())
-                     .observeOn(AndroidSchedulers.mainThread()).subscribe(
-        this::success,
-        this::error
-      ));
+    disposable.add(interactor.users()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(this::success, this::error));
   }
 
   private void success(final TeamEvent event) {

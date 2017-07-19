@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit2.Retrofit;
 
 public class HttpTeamRepository implements TeamRepository {
+
   private final TeamService service;
   private final Cache<List<TeamService.TeamResponse>> cache;
 
@@ -15,11 +16,9 @@ public class HttpTeamRepository implements TeamRepository {
     cache = new MemoryCache<>();
   }
 
-  @Override
-  public Flowable<List<TeamService.TeamResponse>> get() {
-    return Flowable.concat(
-      cache.get(),
-      service.team().retryWhen(RxUtils.incremental())
-    ).take(1).doOnNext(cache::save);
+  @Override public Flowable<List<TeamService.TeamResponse>> get() {
+    return Flowable.concat(cache.get(), service.team().retryWhen(RxUtils.incremental()))
+        .take(1)
+        .doOnNext(cache::save);
   }
 }
