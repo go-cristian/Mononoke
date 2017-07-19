@@ -2,7 +2,7 @@ engines:
   checkstyle:
     enabled: true
     channel: "beta"
-    config: 'config/checkstyle.xml'
+    config: 'checkstyle.xml'
   pmd:
     enabled: true
     channel: "beta"
